@@ -1,62 +1,56 @@
 <template>
-    <div class="flex flex-row gap-3 w-1/3">
-        <!-- parametros para la busqueda -->
-        <div id="search parameters">
-            <form @submit.prevent class="">
-                <label for="Game title">Game title</label>
-                <input v-model="params.title" type="text" class="form-control rounded-full p-2" placeholder="What game are you looking for?" />
+    <!-- START: CONTENEDOR PARA TODAS LAS COSAS EN HOME -->
+    <div class="flex flex-row gap-3">
+        
+        <!-- Start: Columna Izquierda para buscador -->
+        <div id="search column" class="px-16 m-16 border-4 border-[#645e7d7d] rounded-xl gap-3 bg-[#504872]">
+
+            <form @submit.prevent class="flex flex-col">
+                <label for="Game title" class="hidden">Game title</label>
+                <input v-model="params.title" type="text" class="form-control rounded-full p-2" placeholder="Game Title" />
                 
                 <!-- TODO: combinar min y max price? -->
-                <div class="flex justify-around">
-                    <label for="Min Price">Min Price</label>
-                    <input v-model="params.minPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
-                    <input v-model="params.minPrice" type="range" class="p-2" />
+                <label for="Min Price">Min Price</label>
+                <input v-model="params.minPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
+                <input v-model="params.minPrice" type="range" class="p-2" />
+            
+                <label for="Max Price">Max Price</label>
+                <input v-model="params.maxPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
+                <input v-model="params.maxPrice" type="range" class="p-2" />
                 
-                    <label for="Max Price">Max Price</label>
-                    <input v-model="params.maxPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
-                    <input v-model="params.maxPrice" type="range" class="p-2" />
-                    
-                    <label for="AAA game">On-sale games only</label>
-                    <input v-model="params.onSale" type="checkbox" name="On sale games" id="On sale" class="checkbox absolute z-10 cursor-pointer opacity-0">
+                <label for="AAA game">On-sale games only</label>
+                <input v-model="params.onSale" type="checkbox" name="On sale games" id="On sale" class="checkbox absolute z-10 cursor-pointer opacity-0">
 
-                    <!-- estos son las posibles maneras para ordenar los resultados, quizas podemos utilizarlos en el resultado -->
-                    <label for="sort">Sort by: </label>
-                    <div>
-                        <select id="sort" name="sort" class="rounded-full p-1">
-                            <option value="Price">Price</option>
-                            <option value="Deal Rating">Deal Rating</option>
-                            <option value="Title">Tile</option>
-                            <option value="Savings">Savings</option>
-                            <option value="Metacritic Score">Metacritic Score</option>
-                            <option value="Recent">Most Recent</option>
-                        </select>
-                    </div>
-                </div>
-
-                
                 <button @click="findDeals()" class="button bg-[#d9a7ee] p-2 rounded-lg">Search</button>
             </form> 
-
-        </div>
-        
-        <!-- solo para ver los valores del input input -->
-        <!-- <div class="border border-gray-300 p-2 rounded-xl text-xs">
-            <span class="text-red-700">params div (to be removed)</span> 
-            <p>Title: {{params.title}}</p>
-            <p>minPrice: {{params.minPrice}}</p>
-            <p>maxPrice: {{params.maxPrice}}</p>
-            <p>onSale: {{params.onSale}}</p>
-               
-        </div> -->
-        
-        <!-- si tuvieramos resultados aparecerán aquí???? -->
-        <div class="flex flex-col">
             
-            <!-- result block -->
+        </div>
+        <!-- End: Columna Izquierda para buscador -->
+
+        <!-- START: Columna Derecha para resultados -->
+        <div id="result column" class="flex flex-col px-16 m-16 border-4 border-[#645e7d7d] rounded-xl gap-3 bg-[#504872] gap-2">
+            
+            <!-- START Sortby dropdown-->
+            
+            <div>
+                <label for="sort">Sort by: </label>
+                <select id="sort" name="sort" class="rounded-full p-1">
+                    <option value="Price">Price</option>
+                    <option value="Deal Rating">Deal Rating</option>
+                    <option value="Title">Tile</option>
+                    <option value="Savings">Savings</option>
+                    <option value="Metacritic Score">Metacritic Score</option>
+                    <option value="Recent">Most Recent</option>
+                </select>
+            </div>
+                    <!-- END Sortby dropdown-->
+
+            
             <div v-if="data" class="flex flex-col gap-5 ">
                 
+                <!-- START individual result block -->
                 <div v-for="result in data" class="flex rounded-xl bg-gray-200 p-4 shadow-2xl gap-4">
-                    <img :src="`${biggerThumbnail(result.thumb)}`" :alt="`${result.title}`" class="rounded-3xl">
+                    <img :src="`${biggerThumbnail(result.thumb)}`" :alt="`${result.title}`" class="rounded-3xl h-[5rem]">
                     <div class="">
                         <h6 class="font-semibold">{{result.title}}</h6> 
                         <p><a :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">Metacritic Score: </a> {{result.metacriticScore}}</p>
@@ -73,11 +67,16 @@
                         
                     </div>
                 </div>
-                
+                <!-- END individual result block -->
+
             </div>
+            
         </div>
+        <!-- END: Columna Derecha para resultados -->
+
     </div>
-    
+    <!-- END: CONTENEDOR PARA TODAS LAS COSAS EN HOME -->
+
 </template>
 <script>
 export default {
