@@ -4,10 +4,10 @@
         <div id="search parameters">
             <form @submit.prevent class="flex flex-col">
                 <label for="Game title">Game title</label>
-                <input v-model="params.title" type="text" class="form-control p-2" placeholder="What game are you looking for?" />
+                <input v-model="params.title" type="text" class="form-control rounded-full p-2" placeholder="What game are you looking for?" />
                 
                 <!-- TODO: combinar min y max price? -->
-                <div class="flex justify-around">
+                <div class="flex justify-around p-3">
                     <label for="Min Price">Min Price</label>
                     <input v-model="params.minPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
                     <input v-model="params.minPrice" type="range" class="p-2" />
@@ -17,10 +17,22 @@
                     <input v-model="params.maxPrice" type="range" class="p-2" />
                     
                     <label for="AAA game">On-sale games only</label>
-                    <input v-model="params.onSale" type="checkbox" name="AAA games" id="AAA">
+                    <input v-model="params.onSale" type="checkbox" name="On sale games" id="On sale" class="checkbox absolute z-10 cursor-pointer opacity-0">
+
+                    <!-- estos son las posibles maneras para ordenar los resultados, quizas podemos utilizarlos en el resultado -->
+                    <label for="sort">Sort by: </label>
+                    <div>
+                        <select id="sort" name="sort" class="rounded-full p-1">
+                            <option value="Price">Price</option>
+                            <option value="Deal Rating">Deal Rating</option>
+                            <option value="Title">Tile</option>
+                            <option value="Savings">Savings</option>
+                            <option value="Metacritic Score">Metacritic Score</option>
+                            <option value="Recent">Most Recent</option>
+                        </select>
+                    </div>
                 </div>
 
-                
                 <button @click="findDeals()" class="button-red p-2 rounded-lg">Search</button>
             </form> 
 
@@ -38,10 +50,6 @@
         
         <!-- si tuvieramos resultados aparecerán aquí???? -->
         <div class="flex flex-col">
-            
-            <!-- estos son las posibles maneras para ordenar los resultados, quizas podemos utilizarlos en el resultado -->
-            <span> Sort result by? Price, Deal Rating + Title + Savings + Price + Metacritic + Reviews + Release + Store + recent </span>
-            
             
             <!-- result block -->
             <div v-if="data" class="flex flex-col gap-5 ">
@@ -129,6 +137,7 @@ export default {
 
 }
 </script>
-<style lang="">
-    
+
+<style>
+
 </style>

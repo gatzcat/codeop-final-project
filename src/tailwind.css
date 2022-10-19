@@ -15,5 +15,9 @@
 
         body{
          font-family: 'Poppins', sans-serif;
-        }  
+        } 
+        
+        label{
+          @apply text-gray-200
+        }
   }
