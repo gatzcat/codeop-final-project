@@ -1,13 +1,13 @@
 <template>
-    <div class="flex flex-row gap-3 w-1/3">
+    <div class="flex flex-col gap-3">
         <!-- parametros para la busqueda -->
         <div id="search parameters">
-            <form @submit.prevent class="">
+            <form @submit.prevent class="flex flex-col">
                 <label for="Game title">Game title</label>
-                <input v-model="params.title" type="text" class="form-control rounded-full p-2" placeholder="What game are you looking for?" />
+                <input v-model="params.title" type="text" class="form-control text-white rounded-full p-2" placeholder="What game are you looking for?" />
                 
                 <!-- TODO: combinar min y max price? -->
-                <div class="flex justify-around">
+                <div class="flex justify-around p-3">
                     <label for="Min Price">Min Price</label>
                     <input v-model="params.minPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
                     <input v-model="params.minPrice" type="range" class="p-2" />
@@ -17,7 +17,7 @@
                     <input v-model="params.maxPrice" type="range" class="p-2" />
                     
                     <label for="AAA game">On-sale games only</label>
-                    <input v-model="params.onSale" type="checkbox" name="On sale games" id="On sale" class="checkbox absolute z-10 cursor-pointer opacity-0">
+                    <input v-model="params.onSale" type="checkbox" name="On sale games" id="On sale" class="">
 
                     <!-- estos son las posibles maneras para ordenar los resultados, quizas podemos utilizarlos en el resultado -->
                     <label for="sort">Sort by: </label>
@@ -33,8 +33,7 @@
                     </div>
                 </div>
 
-                
-                <button @click="findDeals()" class="button bg-[#d9a7ee] p-2 rounded-lg">Search</button>
+                <button @click="findDeals()" class="button-red p-2 rounded-lg">Search</button>
             </form> 
 
         </div>
