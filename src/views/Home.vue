@@ -1,13 +1,13 @@
 <template>
     <!-- START: CONTENEDOR PARA TODAS LAS COSAS EN HOME -->
-    <div class="flex flex-row gap-3">
+    <div class="flex flex-row">
         
         <!-- Start: Columna Izquierda para buscador -->
-        <div id="search column" class="px-16 m-16 border-4 border-[#645e7d7d] rounded-xl gap-3 bg-[#504872]">
+        <div id="search column" class="p-16 m-16 border-4 border-[#645e7d7d] rounded-xl gap-3 bg-[#504872]">
 
-            <form @submit.prevent class="flex flex-col">
+            <form @submit.prevent class="flex flex-col gap-3">
                 <label for="Game title" class="hidden">Game title</label>
-                <input v-model="params.title" type="text" class="form-control rounded-full p-2" placeholder="Game Title" />
+                <input v-model="params.title" type="text" class="form-control rounded-full p-2 text-gray-200" placeholder="Game Title" />
                 
                 <!-- TODO: combinar min y max price? -->
                 <label for="Min Price">Min Price</label>
@@ -18,8 +18,10 @@
                 <input v-model="params.maxPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
                 <input v-model="params.maxPrice" type="range" class="p-2" />
                 
-                <label for="AAA game">On-sale games only</label>
-                <input v-model="params.onSale" type="checkbox" name="On sale games" id="On sale" class="checkbox absolute z-10 cursor-pointer opacity-0">
+                <div>
+                    <label for="AAA game">On-sale games only</label>
+                    <input v-model="params.onSale" type="checkbox" name="On sale games" id="On sale">
+                </div>
 
                 <button @click="findDeals()" class="button bg-[#d9a7ee] p-2 rounded-lg">Search</button>
             </form> 
@@ -28,19 +30,19 @@
         <!-- End: Columna Izquierda para buscador -->
 
         <!-- START: Columna Derecha para resultados -->
-        <div id="result column" class="flex flex-col px-16 m-16 border-4 border-[#645e7d7d] rounded-xl gap-3 bg-[#504872] gap-2">
+        <div id="result column" class="flex flex-col p-16 m-16 border-4 border-[#645e7d7d] rounded-xl gap-3 bg-[#504872] gap-2">
             
             <!-- START Sortby dropdown-->
             
-            <div>
-                <label for="sort">Sort by: </label>
-                <select id="sort" name="sort" class="rounded-full p-1">
+            <div class="flex gap-3 items-center">
+                <label for="sort">Sort by: {{params.sortBy}}</label>
+                <select v-model="params.sortBy" @input="findDeals()" id="sort" name="sort" class="rounded-full p-1">
                     <option value="Price">Price</option>
-                    <option value="Deal Rating">Deal Rating</option>
+                    <option value="Deal+Rating">Deal Rating</option>
                     <option value="Title">Tile</option>
                     <option value="Savings">Savings</option>
-                    <option value="Metacritic Score">Metacritic Score</option>
-                    <option value="Recent">Most Recent</option>
+                    <option value="Metacritic">Metacritic Score</option>
+                    <option value="Release">Release Date</option>
                 </select>
             </div>
                     <!-- END Sortby dropdown-->
@@ -90,6 +92,7 @@ export default {
                 maxPrice: 20,
                 minPrice: 0,
                 onSale: false,
+                sortBy: "Savings",
             }
         }
     },
@@ -118,14 +121,17 @@ export default {
     computed: {
         // construye el URL con los parametros para hacer la llamada
         getUrl() {
-            let url = `https://www.cheapshark.com/api/1.0/deals?storeID=1`
+            
+            let url = `https://www.cheapshark.com/api/1.0/deals?storeID=1&desc=0`
             let params = ""
-            console.log(this.params);
             params += this.params.title ? `&title=${this.params.title}` : ""
             params += this.params.maxPrice ? `&upperPrice=${this.params.maxPrice}` : ""
             params += this.params.minPrice ? `&lowerPrice=${this.params.minPrice}` : ""
             params += this.params.onSale ? `&onSale=${this.params.onSale}` : ""
+            params += this.params.sortBy ? `&sortBy=${this.params.sortBy}` : ""
+            params += this.params.sortBy ? `&sortBy=${this.params.sortBy}` : ""
             url += params
+            console.log(this.params.sortBy);
             console.log(url);
             return url
         },
