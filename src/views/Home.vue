@@ -1,13 +1,13 @@
 <template>
-    <div class="flex flex-col gap-3">
+    <div class="flex flex-row gap-3 w-1/3">
         <!-- parametros para la busqueda -->
         <div id="search parameters">
-            <form @submit.prevent class="flex flex-col">
+            <form @submit.prevent class="">
                 <label for="Game title">Game title</label>
                 <input v-model="params.title" type="text" class="form-control rounded-full p-2" placeholder="What game are you looking for?" />
                 
                 <!-- TODO: combinar min y max price? -->
-                <div class="flex justify-around p-3">
+                <div class="flex justify-around">
                     <label for="Min Price">Min Price</label>
                     <input v-model="params.minPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
                     <input v-model="params.minPrice" type="range" class="p-2" />
