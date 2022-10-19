@@ -21,7 +21,7 @@
                 </div>
 
                 
-                <button @click="findDeals()" class="button-red p-2 rounded-lg">Search</button>
+                <button @click="findDeals()" class="button bg-[#d9a7ee] p-2 rounded-lg">Search</button>
             </form> 
 
         </div>
