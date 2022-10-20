@@ -13,8 +13,10 @@
             games
           </p>
         </div>
-      <div>
-      <img src="./img/bell-solid.png" class="w-4">
+      <div class="flex items-center">
+      <img src="./img/bookmark-solid.png" class="w-7 h-8 m-3">
+      <img src="./img/bell-solid.png" class="w-7 h-8 m-3">
+      <img src="./img/user-solid.png" class="w-7 h-8 m-3">
       </div>
     </div> 
     </div>
