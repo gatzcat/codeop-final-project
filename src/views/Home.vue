@@ -15,16 +15,20 @@
                 
                 <!-- TODO: combinar min y max price? -->
                 <label for="Min Price">Min Price</label>
-                <input v-model="params.minPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
-                <input v-model="params.minPrice" type="range" class="p-2 appearance-none bg-[#f0924fe5] h-2 rounded-full" />
+                <input @change="findDeals()" v-model="params.lowerPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
+                <input @change="findDeals()" v-model="params.lowerPrice" type="range" class="p-2 appearance-none bg-[#f0924fe5] h-2 rounded-full" />
             
                 <label for="Max Price">Max Price</label>
-                <input v-model="params.maxPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
-                <input v-model="params.maxPrice" type="range" class="p-2 appearance-none bg-[#f0924fe5] h-2 rounded-full" />
+                <input @change="findDeals()" v-model="params.upperPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
+                <input @change="findDeals()" v-model="params.upperPrice" type="range" class="p-2 appearance-none bg-[#f0924fe5] h-2 rounded-full" />
+                
+                <label for="Max Price">Steam Rating</label>
+                <input @change="findDeals()" v-model="params.steamRating" type="text" class="border border-gray-300 rounded-lg w-8" />
+                <input @change="findDeals()" v-model="params.steamRating" type="range" class="p-2 appearance-none bg-[#f0924fe5] h-2 rounded-full" />
                 
                 <div>
                     <label for="AAA game">On-sale games only</label>
-                    <input v-model="params.onSale" type="checkbox" name="On sale games" id="On sale">
+                    <input @change="findDeals()" v-model="params.onSale" type="checkbox" name="On sale games" id="On sale">
                 </div>
 
                 <button @click="findDeals()" class="button bg-[#8a57d6] p-2 rounded-lg">Search</button>
@@ -56,10 +60,18 @@
                 
                 <!-- START individual result block -->
                 <div v-for="result in data" class="flex rounded-xl bg-[#fefdffb0] p-4 shadow-2xl gap-4">
-                    <img :src="`${biggerThumbnail(result.thumb)}`" :alt="`${result.title}`" class="rounded-3xl h-[5rem]">
+                    
+                    <!-- START: thumbnail del juego -->
+                    <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/`">
+                        <img :src="`${biggerThumbnail(result.thumb)}`" :alt="`${result.title}`" class="rounded-3xl h-[5rem]" />
+                    </a>
+                    <!-- END: thumbnail juego -->
+                    
                     <div class="">
-                        <h6 class="font-semibold">{{result.title}}</h6> 
-                        <p><a :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">Metacritic Score: </a> {{result.metacriticScore}}</p>
+                        <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/`"><h6 class="font-semibold">{{result.title}}</h6></a>
+                        
+                        <p v-if="result.metacriticLink"><a :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">Metacritic Score: </a> {{result.metacriticScore}}</p>
+                        
                         <p class="mt-2 text-md text-red-500 font-semibold">
                             ${{result.salePrice}} 
                             <span class="text-green-500 text-xs">-{{Math.round(result.savings)}}%</span>
@@ -67,11 +79,13 @@
                         <p class="mt-2 text-sm text-gray-500 line-through">${{result.normalPrice}}</p>
                         <p>Deal Rating: {{result.dealRating}}</p>
                     </div>
+
+                    <!-- START: steam rating -->
                     <div class="">
                         <p>{{result.steamRatingText}} </p>
                         <p>{{result.steamRatingPercent}}%</p>
-                        
                     </div>
+                    <!-- END: steam rating -->
                 </div>
                 <!-- END individual result block -->
 
@@ -94,10 +108,11 @@ export default {
             numOfPage: null,
             params: {
                 title: null,
-                maxPrice: 20,
-                minPrice: 0,
+                upperPrice: 20,
+                lowerPrice: 0,
                 onSale: false,
                 sortBy: "Savings",
+                steamRating: 60,
             }
         }
     },
@@ -108,7 +123,7 @@ export default {
             {
                 this.loading = true
                 const response = await fetch(this.getUrl)
-                // response = await fetch(`https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=${this.maxPrice}&lowerPrice=${this.minPrice}&onSale=${this.onSale}&title=${this.title}`)
+                // response = await fetch(`https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=${this.upperPrice}&lowerPrice=${this.lowerPrice}&onSale=${this.onSale}&title=${this.title}`)
                 const responseJson = await response.json()
                 this.data = responseJson
                 this.numOfPage = response.headers.get("x-total-page-count");
@@ -127,18 +142,10 @@ export default {
     computed: {
         // construye el URL con los parametros para hacer la llamada
         getUrl() {
-            
             let url = `https://www.cheapshark.com/api/1.0/deals?storeID=1&desc=0`
-            let params = ""
-            params += this.params.title ? `&title=${this.params.title}` : ""
-            params += this.params.maxPrice ? `&upperPrice=${this.params.maxPrice}` : ""
-            params += this.params.minPrice ? `&lowerPrice=${this.params.minPrice}` : ""
-            params += this.params.onSale ? `&onSale=${this.params.onSale}` : ""
-            params += this.params.sortBy ? `&sortBy=${this.params.sortBy}` : ""
-            params += this.params.sortBy ? `&sortBy=${this.params.sortBy}` : ""
-            url += params
-            console.log(this.params.sortBy);
-            console.log(url);
+            for (let [paramName, paramValue] of Object.entries(this.params)) {
+                url += paramValue ? `&${paramName}=${paramValue}` : ""
+            }
             return url
         },
     },
