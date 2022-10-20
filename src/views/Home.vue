@@ -23,23 +23,23 @@
                     <input v-model="params.onSale" type="checkbox" name="On sale games" id="On sale">
                 </div>
 
-                <button @click="findDeals()" class="button bg-[#d9a7ee] p-2 rounded-lg">Search</button>
+                <button @click="findDeals()" class="button bg-[#8a57d6] p-2 rounded-lg">Search</button>
             </form> 
             
         </div>
         <!-- End: Columna Izquierda para buscador -->
 
         <!-- START: Columna Derecha para resultados -->
-        <div id="result column" class="flex flex-col p-16 m-16 border-4 border-[#645e7d7d] rounded-xl gap-3 bg-[#504872] gap-2">
+        <div id="result column" class="flex flex-col p-16 m-16 border-4 border-[#645e7d7d] rounded-xl bg-[#504872] gap-2">
             
             <!-- START Sortby dropdown-->
             
             <div class="flex gap-3 items-center">
-                <label for="sort">Sort by: {{params.sortBy}}</label>
-                <select v-model="params.sortBy" @input="findDeals()" id="sort" name="sort" class="rounded-full p-1">
+                <label for="sort" class="text-xl">Sort by:</label>
+                <select v-model="params.sortBy" @input="findDeals()" id="sort" name="sort" class="rounded-full py-1 px-2 bg-[#645e7d00] text-gray-300 text-center text-xl border border-gray-300 mb-4">
                     <option value="Price">Price</option>
                     <option value="Deal+Rating">Deal Rating</option>
-                    <option value="Title">Tile</option>
+                    <option value="Title">Title</option>
                     <option value="Savings">Savings</option>
                     <option value="Metacritic">Metacritic Score</option>
                     <option value="Release">Release Date</option>
@@ -48,10 +48,10 @@
                     <!-- END Sortby dropdown-->
 
             
-            <div v-if="data" class="flex flex-col gap-5 ">
+            <div v-if="data" class="flex flex-col gap-5">
                 
                 <!-- START individual result block -->
-                <div v-for="result in data" class="flex rounded-xl bg-gray-200 p-4 shadow-2xl gap-4">
+                <div v-for="result in data" class="flex rounded-xl bg-[#fefdffb0] p-4 shadow-2xl gap-4">
                     <img :src="`${biggerThumbnail(result.thumb)}`" :alt="`${result.title}`" class="rounded-3xl h-[5rem]">
                     <div class="">
                         <h6 class="font-semibold">{{result.title}}</h6> 
