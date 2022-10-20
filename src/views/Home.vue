@@ -3,7 +3,11 @@
     <div class="flex flex-row">
         
         <!-- Start: Columna Izquierda para buscador -->
-        <div id="search column" class="p-16 m-16 border-4 border-[#645e7d7d] rounded-xl gap-3 bg-[#504872]">
+        <div id="search column" class="w-1/3 p-16 m-16 border-4 border-[#645e7d7d] rounded-xl bg-[#504872]">
+
+            <div>
+                <img src="../img/logosteam.png" class=" w-28">
+            </div>
 
             <form @submit.prevent class="flex flex-col gap-3">
                 <label for="Game title" class="hidden">Game title</label>
@@ -12,11 +16,11 @@
                 <!-- TODO: combinar min y max price? -->
                 <label for="Min Price">Min Price</label>
                 <input v-model="params.minPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
-                <input v-model="params.minPrice" type="range" class="p-2" />
+                <input v-model="params.minPrice" type="range" class="p-2 appearance-none bg-[#f0924fe5] h-2 rounded-full" />
             
                 <label for="Max Price">Max Price</label>
                 <input v-model="params.maxPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
-                <input v-model="params.maxPrice" type="range" class="p-2" />
+                <input v-model="params.maxPrice" type="range" class="p-2 appearance-none bg-[#f0924fe5] h-2 rounded-full" />
                 
                 <div>
                     <label for="AAA game">On-sale games only</label>

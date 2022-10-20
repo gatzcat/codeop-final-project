@@ -2,10 +2,10 @@
   <div>
     <div class="flex flex-col m-16 px-16 border-4 border-[#645e7d7d] rounded-full gap-3 bg-[#504872]">
       <div class="flex flex-col-3 gap-2">
-        <div class="w-20 mt-8">
+        <div class="w-20 mt-8 cursor-pointer">
           <img src="./img/logo.png">
         </div>
-        <div class="flex flex-col-2">
+        <div class="flex flex-col-2 w-3/4">
           <h1 class="text-white text-9xl ml-10">
             KIBU
           </h1>
@@ -13,11 +13,11 @@
             games
           </p>
         </div>
-      <div class="flex items-center">
-      <img src="./img/bookmark-solid.png" class="w-7 h-8 m-3">
-      <img src="./img/bell-solid.png" class="w-7 h-8 m-3">
-      <img src="./img/user-solid.png" class="w-7 h-8 m-3">
-      </div>
+        <div class="flex items-center opacity-75">
+        <img src="./img/bookmark-solid.png" class="h-9 m-4 cursor-pointer">
+        <img src="./img/bell-solid.png" class="h-9 m-4 cursor-pointer">
+        <img src="./img/user-solid.png" class="h-9 m-4 cursor-pointer">
+        </div>
     </div> 
     </div>
     
