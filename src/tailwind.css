@@ -16,6 +16,10 @@
         body{
          font-family: 'Poppins', sans-serif;
         } 
+
+        a:hover {
+          @apply text-indigo-600
+        }
         
         label{
           @apply text-gray-200
