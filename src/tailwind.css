@@ -20,4 +20,12 @@
         label{
           @apply text-gray-200
         }
+
+        .dark-purple{
+          @apply bg-[#504872]
+        }
+
+        .border-purple {
+          @apply border-[#645e7d7d]
+        }
   }

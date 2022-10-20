@@ -3,7 +3,7 @@
     <div class="flex flex-row">
         
         <!-- Start: Columna Izquierda para buscador -->
-        <div id="search column" class="w-1/3 p-16 m-16 border-4 border-[#645e7d7d] rounded-xl bg-[#504872]">
+        <div id="search column" class="w-1/3 p-16 m-16 border-4 border-purple rounded-xl dark-purple">
 
             <div>
                 <img src="../img/logosteam.png" class=" w-28">
@@ -34,19 +34,19 @@
         <!-- End: Columna Izquierda para buscador -->
 
         <!-- START: Columna Derecha para resultados -->
-        <div id="result column" class="flex flex-col p-16 m-16 border-4 border-[#645e7d7d] rounded-xl bg-[#504872] gap-2">
+        <div id="result column" class="flex flex-col p-16 m-16 border-4 border-purple rounded-xl dark-purple gap-2">
             
             <!-- START Sortby dropdown-->
             
             <div class="flex gap-3 items-center">
                 <label for="sort" class="text-xl">Sort by:</label>
-                <select v-model="params.sortBy" @input="findDeals()" id="sort" name="sort" class="rounded-full py-1 px-2 bg-[#645e7d00] text-gray-300 text-center text-xl border border-gray-300 mb-4">
-                    <option value="Price">Price</option>
-                    <option value="Deal+Rating">Deal Rating</option>
-                    <option value="Title">Title</option>
-                    <option value="Savings">Savings</option>
-                    <option value="Metacritic">Metacritic Score</option>
-                    <option value="Release">Release Date</option>
+                <select v-model="params.sortBy" @change="findDeals()" id="sort" name="sort" class="rounded-full py-1 px-2 bg-[#645e7d00] text-gray-300 text-center text-xl border border-gray-300 mb-4">
+                    <option value="Price" class="dark-purple">Price</option>
+                    <option value="Deal+Rating" class="dark-purple">Deal Rating</option>
+                    <option value="Title" class="dark-purple">Title</option>
+                    <option value="Savings" class="dark-purple">Savings</option>
+                    <option value="Metacritic" class="dark-purple">Metacritic Score</option>
+                    <option value="Release" class="dark-purple">Release Date</option>
                 </select>
             </div>
                     <!-- END Sortby dropdown-->
@@ -91,6 +91,7 @@ export default {
         return {
             loading: false,
             data: null,
+            numOfPage: null,
             params: {
                 title: null,
                 maxPrice: 20,
@@ -110,6 +111,7 @@ export default {
                 // response = await fetch(`https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=${this.maxPrice}&lowerPrice=${this.minPrice}&onSale=${this.onSale}&title=${this.title}`)
                 const responseJson = await response.json()
                 this.data = responseJson
+                this.numOfPage = response.headers.get("x-total-page-count");
             } catch (error) {
                 console.log(error);
             } finally {
