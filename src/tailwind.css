@@ -32,10 +32,36 @@
           @apply bg-gradient-to-b from-gray-700 to-neutral-900 opacity-90
         }
 
+        .dark-button {
+          @apply bg-gradient-to-tr from-gray-800 to-slate-600 
+        }
+
+        .grow {
+          @apply transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300
+        }
+
         .border-purple {
           /* @apply border-[#645e7d7d] */
           @apply border-gray-800 drop-shadow
         }
+
+        .slider {
+          @apply p-2 appearance-none bg-zinc-600 h-2 rounded-full
+        }
+
+        .pagination-buttons {
+          @apply border border-gray-600/50 bg-stone-800/50 rounded-full text-gray-100 px-1 hover:bg-slate-800
+        }
+
+        .fade-in {
+          animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+          0% { opacity: 0; }
+          100% { opacity: 1; }
+        }
+        
         #search-column{
           border-radius: 3.5rem
         }

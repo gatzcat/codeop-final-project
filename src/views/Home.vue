@@ -11,27 +11,34 @@
 
             <form @submit.prevent class="flex flex-col gap-3">
                 <label for="Game title" class="hidden">Game title</label>
-                <input v-model="params.title" type="text" class="form-control rounded-full p-2 text-gray-200" placeholder="Game Title" />
+                <input v-model="params.title" type="text" class="bg-gray-800 border border-gray-600 rounded-full p-2 text-gray-200" placeholder="Game Title" />
                 
                 <!-- TODO: combinar min y max price? -->
-                <label for="Min Price">Min Price</label>
-                <input @change="findDeals()" v-model="params.lowerPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
-                <input @change="findDeals()" v-model="params.lowerPrice" type="range" class="p-2 appearance-none bg-[#f0924fe5] h-2 rounded-full" />
-            
-                <label for="Max Price">Max Price</label>
-                <input @change="findDeals()" v-model="params.upperPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
-                <input @change="findDeals()" v-model="params.upperPrice" type="range" class="p-2 appearance-none bg-[#f0924fe5] h-2 rounded-full" />
+                <div class="flex justify-between">
+                    <label for="Min Price">Min Price</label>
+                    <label for="Max Price">Max Price</label>
+                </div>
+                
+                <div class="flex justify-between">
+                    <input @change="findDeals()" v-model="params.lowerPrice" type="number" class="w-16 px-2 border bg-gray-800 text-gray-200 border-gray-600 rounded-lg" />
+                    <input @change="findDeals()" v-model="params.upperPrice" type="number" class="w-16 px-2 border bg-gray-800 text-gray-200 border-gray-600 rounded-lg" />
+                </div>
+
+                <div>
+                    <input @change="findDeals()" v-model="params.lowerPrice" type="range" class="slider" />
+                    <input @change="findDeals()" v-model="params.upperPrice" type="range" class="slider" />
+                </div>
                 
                 <label for="Max Price">Min Steam Rating</label>
-                <input @change="findDeals()" v-model="params.steamRating" type="text" class="border border-gray-300 rounded-lg w-8" />
-                <input @change="findDeals()" v-model="params.steamRating" type="range" class="p-2 appearance-none bg-[#f0924fe5] h-2 rounded-full" />
+                <input @change="findDeals()" v-model="params.steamRating" type="text" class="w-16 px-2 border bg-gray-800 text-gray-200 border-gray-600 rounded-lg" />
+                <input @change="findDeals()" v-model="params.steamRating" type="range" class="slider" />
                 
                 <div class="flex gap-2">
                     <label for="On sale">On-sale only</label>
-                    <input @change="findDeals()" v-model="params.onSale" type="checkbox" name="On sale games" id="On sale" class="w-4">
+                    <input @change="findDeals()" v-model="params.onSale" type="checkbox" :true-value="1" :false-value="0" name="On sale games" id="On sale" class="w-4">
                 </div>
 
-                <button @click="findDeals()" class="button bg-[#7D58CB] border-2 border-[#ffffff6f] p-2 m-2 mt-8 rounded-full text-white text-l hover:bg-[#a68ed9]">Search</button>
+                <button @click="findDeals()" class="button dark-button p-2 m-2 mt-8 rounded-full text-white text-l">Search</button>
             </form> 
             
         </div>
@@ -58,11 +65,11 @@
 
                 <!-- START: Page buttons (top) -->
                 <div class="flex gap-2 justify-center items-center mt-2" v-if="data">
-                    <button @click="params.pageNumber -=1; findDeals()" v-if="params.pageNumber !== 0" class="button border border-gray-100 rounded-full text-gray-100 px-1"> &lt; </button>
+                    <button @click="params.pageNumber -=1; findDeals()" v-if="params.pageNumber !== 0" class="pagination-buttons"> &lt; </button>
                     
-                    <span class="text-gray-300 mx-5">Page {{parseInt(params.pageNumber) +1}}</span>
+                    <span class="text-gray-300 mx-1">Page {{parseInt(params.pageNumber) +1}}</span>
 
-                    <button @click="params.pageNumber +=1; findDeals()" v-if="params.pageNumber < numOfPage " class="button border border-gray-100 rounded-full text-gray-100 px-1"> &gt; </button>
+                    <button @click="params.pageNumber +=1; findDeals()" v-if="params.pageNumber < numOfPage " class="pagination-buttons"> &gt; </button>
                 </div>
                 <!-- END: Page buttons (top) -->
 
@@ -84,9 +91,13 @@
                 <div v-for="result in data" class="grid grid-cols-3 items-center rounded-xl bg-[#fefdffb0] opacity-75 p-4 shadow-2xl gap-4">
                     
                     <!-- START: thumbnail del juego -->
-                    <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/`">
-                        <img :src="`${biggerThumbnail(result.thumb)}`" :alt="`${result.title}`" class="rounded-3xl max-h-[8rem] " />
-                    </a>
+                    <div class="relative">
+                        <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/`">
+                            <img :src="`${biggerThumbnail(result.thumb)}`" :alt="`${result.title}`" class="drop-shadow-md rounded-3xl max-h-[8rem] grow" />
+                        </a>
+                        <span v-if="parseInt(result.savings) !== 0" class="absolute bottom-1 right-2 rounded-tl-xl rounded-3xl text-sm text-lime-500 pl-2 opacity-80 bg-gray-800 font-semibold">-{{Math.round(result.savings)}}%</span>
+                    </div>
+                    
                     <!-- END: thumbnail juego -->
                     
                     <div class="">
@@ -97,16 +108,17 @@
                         <div class="flex gap-2 text-lg">
                             <span class="mt-2 text-red-500 font-semibold">${{result.salePrice}} </span> 
                             <span class="mt-2 text-gray-600 line-through"> ${{result.normalPrice}}</span>
-                            <span class="mt-2 text-green-500 font-semibold">Save {{Math.round(result.savings)}}%</span>
+                            
                         </div>
                         
-                        <p>Deal Rating: {{result.dealRating}}</p>
+                        <p v-if="parseInt(result.dealRating) !== 0" class="text-sm">Deal Rating: {{result.dealRating}}</p>
                     </div>
 
                     <!-- START: steam rating -->
                     <div class="justify-self-start">
-                        <p>{{result.steamRatingText}} </p>
-                        <p>{{result.steamRatingPercent}}%</p>
+                        
+                        <p class="text-3xl">{{result.steamRatingPercent}}%</p>
+                        <span class="rounded-2xl text-xs px-2 py-0.5 bg-stone-700 text-gray-100">{{result.steamRatingText}} </span>
                     </div>
                     <!-- END: steam rating -->
                 </div>
@@ -115,9 +127,9 @@
             </div>
 
             <!-- START: Page buttons (bottom) -->
-            <div class="flex gap-2 justify-center mt-2  ">
-                <button @click="params.pageNumber = 0; findDeals()" v-if="params.pageNumber > 1" class="button border border-gray-100 rounded-full text-gray-100 px-1"> &lt;&lt; </button>
-                <button @click="params.pageNumber -=1; findDeals()" v-if="params.pageNumber !== 0" class="button border border-gray-100 rounded-full text-gray-100 px-1"> &lt; </button>
+            <div v-if="!loading" class="flex gap-2 justify-center mt-2  ">
+                <button @click="params.pageNumber = 0; findDeals()" v-if="params.pageNumber > 1" class="pagination-buttons"> &lt;&lt; </button>
+                <button @click="params.pageNumber -=1; findDeals()" v-if="params.pageNumber !== 0" class="pagination-buttons"> &lt; </button>
                 
                 <a @click="params.pageNumber -=3; findDeals()" v-if="params.pageNumber > 2" class="text-gray-500">{{params.pageNumber - 2}}</a>
                 <a @click="params.pageNumber -=2; findDeals()" v-if="params.pageNumber > 1" class="text-gray-500">{{params.pageNumber - 1}}</a>
@@ -129,8 +141,8 @@
                 <a @click="params.pageNumber +=2; findDeals()" v-if="params.pageNumber < numOfPage -2" class="text-gray-500">{{params.pageNumber + 3}}</a>
                 <a @click="params.pageNumber +=3; findDeals()" v-if="params.pageNumber < numOfPage -3" class="text-gray-500">{{params.pageNumber + 4}}</a>
                 
-                <button @click="params.pageNumber +=1; findDeals()" v-if="params.pageNumber < numOfPage " class="button border border-gray-100 rounded-full text-gray-100 px-1"> &gt; </button>
-                <button @click="params.pageNumber = numOfPage; findDeals()" v-if="params.pageNumber < (numOfPage - 1)" class="button border border-gray-100 rounded-full text-gray-100 px-1"> &gt;&gt; </button>
+                <button @click="params.pageNumber +=1; findDeals()" v-if="params.pageNumber < numOfPage " class="pagination-buttons"> &gt; </button>
+                <button @click="params.pageNumber = numOfPage; findDeals()" v-if="params.pageNumber < (numOfPage - 1)" class="pagination-buttons"> &gt;&gt; </button>
             </div>
             <!-- END: Page buttons (bottom) -->
             
@@ -153,7 +165,7 @@ export default {
                 title: null,
                 upperPrice: 20,
                 lowerPrice: 0,
-                onSale: 0,
+                onSale: 1,
                 sortBy: "Metacritic",
                 steamRating: 60,
                 pageNumber: 0,
@@ -211,14 +223,6 @@ export default {
 </script>
 
 <style>
-.fade-in {
-  animation: fadeIn 0.3s;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
 
 
 </style>
