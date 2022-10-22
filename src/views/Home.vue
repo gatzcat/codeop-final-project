@@ -85,10 +85,10 @@
             </div>
             <!-- END: loading spinner -->
 
-            <div v-if="data && !loading" class="flex flex-col gap-5 overflow-y-scroll p-4 fade-in max-h-[550px]">
+            <div v-if="data && !loading" class="flex flex-col gap-5 overflow-y-scroll px-6 py-2 fade-in max-h-[550px]">
                 
                 <!-- START individual result block -->
-                <div v-for="result in data" class="grid grid-cols-3 items-center rounded-xl bg-[#fefdffb0] opacity-75 p-4 shadow-2xl gap-4">
+                <div v-for="result in data" class="grid grid-cols-[2fr,3fr,1.5fr] items-center rounded-3xl bg-[#fefdffb0] opacity-85 px-4 py-2 shadow-xl gap-4">
                     
                     <!-- START: thumbnail del juego -->
                     <div class="relative">
@@ -106,9 +106,8 @@
                         <p v-if="result.metacriticLink"><a :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">Metacritic Score: </a> {{result.metacriticScore}}</p>
                         
                         <div class="flex gap-2 text-lg">
-                            <span class="mt-2 text-red-500 font-semibold">${{result.salePrice}} </span> 
-                            <span class="mt-2 text-gray-600 line-through"> ${{result.normalPrice}}</span>
-                            
+                            <span class="text-red-500 font-semibold">${{result.salePrice}} </span> 
+                            <span class="text-sm text-gray-600 line-through"> ${{result.normalPrice}}</span>
                         </div>
                         
                         <p v-if="parseInt(result.dealRating) !== 0" class="text-sm">Deal Rating: {{result.dealRating}}</p>
