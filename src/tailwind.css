@@ -32,4 +32,11 @@
         .border-purple {
           @apply border-[#645e7d7d]
         }
+        #search-column{
+          border-radius: 3.5rem
+        }
+        #result-column{
+          border-radius: 3.5rem
+        }
+
   }

@@ -3,7 +3,7 @@
     <div class="flex flex-row justify-center">
         
         <!-- Start: Columna Izquierda para buscador -->
-        <div id="search column" class="w-1/3 p-16 m-16 border-4 border-purple rounded-xl dark-purple">
+        <div id="search-column" class="w-1/3 p-16 ml-32 border-8 border-[#645e7d4b] rounded-3xl dark-purple">
 
             <div class="flex justify-center mb-16">
                 <img src="../img/logosteam.png" class=" w-1/2 ">
@@ -31,21 +31,21 @@
                     <input @change="findDeals()" v-model="params.onSale" type="checkbox" name="On sale games" id="On sale" class="w-4">
                 </div>
 
-                <button @click="findDeals()" class="button bg-[#8a57d6] p-2 rounded-lg">Search</button>
+                <button @click="findDeals()" class="button bg-[#7D58CB] border-2 border-[#ffffff6f] p-2 m-2 mt-8 rounded-full text-white text-l hover:bg-[#a68ed9]">Search</button>
             </form> 
             
         </div>
         <!-- End: Columna Izquierda para buscador -->
 
         <!-- START: Columna Derecha para resultados -->
-        <div id="result column" class="flex flex-col w-2/3 p-16 m-16 border-4 border-purple rounded-xl dark-purple gap-2">
+        <div id="result-column" class="flex flex-col w-100 p-16 mr-32 border-8 border-[#645e7d4b] rounded-3xl dark-purple gap-2">
             
             
             <div class="flex justify-between items-center">
                 <!-- START Sortby dropdown-->
                 <div class="flex gap-3 items-center">
-                    <label for="sort" class="text-xl">Sort by:</label>
-                    <select v-model="params.sortBy" @change="findDeals()" id="sort" name="sort" class="rounded-full py-1 px-2 bg-[#645e7d00] text-gray-300 text-center text-xl border border-gray-300 mb-4">
+                    <label for="sort" class="text-l">Sort by:</label>
+                    <select v-model="params.sortBy" @change="findDeals()" id="sort" name="sort" class="rounded-full py-1 px-2 bg-[#645e7d00] text-gray-300 text-center text-l border border-gray-300 mb-4">
                         <option value="Price" class="dark-purple">Price</option>
                         <option value="Deal+Rating" class="dark-purple">Deal Rating</option>
                         <option value="Title" class="dark-purple">Title</option>

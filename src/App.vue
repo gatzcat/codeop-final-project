@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex flex-col m-16 px-16 border-4 border-[#645e7d7d] rounded-full gap-3 bg-[#504872]">
+    <div class="flex flex-col mt-32 mx-32 px-16 border-8 border-[#645e7d4b] rounded-full gap-3 bg-[#504872]">
       <div class="flex flex-col-3 gap-2">
         <div class="w-20 mt-8 cursor-pointer">
           <img src="./img/logo.png">

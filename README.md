@@ -10,7 +10,7 @@
 5. Hemos installado npm: npm install
 6. Hemos puesto en desarrollo la web: npm run dev
 
-## Creación del prototipo
+## Creación del prototipo.
 
 Para crear el prototipo de la aplicación que queríamos crear, hemos usado figma.
 Hemos escogido una plantilla un poco similar a lo que estábamos buscando, y hemos
