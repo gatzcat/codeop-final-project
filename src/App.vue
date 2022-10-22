@@ -2,7 +2,7 @@
   <div>
 
     <!-- START: top horizontal row -->
-    <div class="flex flex-col mt-8 mx-8 px-10 border-4 border-[#645e7d7d] rounded-full gap-3 bg-[#504872]">
+    <div class="flex flex-col mt-8 mx-8 px-10 border-4 dark-purple rounded-full gap-3 border-purple">
       
       <div class="flex flex-col-3 gap-2">
         

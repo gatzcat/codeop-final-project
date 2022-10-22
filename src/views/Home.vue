@@ -38,14 +38,14 @@
         <!-- End: Columna Izquierda para buscador -->
 
         <!-- START: Columna Derecha para resultados -->
-        <div id="result column" class="flex flex-col w-2/3 p-16 mr-10 border-4 border-purple rounded-[80px] dark-purple gap-2  overflow-y-auto">
+        <div id="result column" class="flex flex-col w-2/3 p-16 mr-10 border-4 border-purple rounded-[80px] dark-purple gap-2  overflow-y-auto align-middle">
             
             
-            <div class="flex justify-between align-middle">
+            <div class="flex justify-between ">
                 <!-- START Sortby dropdown-->
-                <div class="flex gap-3">
+                <div class="flex gap-3 items-center">
                     <label for="sort" class="text-lg">Sort by:</label>
-                    <select v-model="params.sortBy" @change="findDeals()" id="sort" name="sort" class="rounded-full py-1 px-2 bg-[#645e7d00] text-gray-300 text-center border border-gray-300 mb-4 ">
+                    <select v-model="params.sortBy" @change="findDeals()" id="sort" name="sort" class="rounded-full py-1 px-2 dark-purple text-gray-300 text-center border border-gray-300 mb-4 ">
                         <option value="Price" class="dark-purple">Price</option>
                         <option value="Deal+Rating" class="dark-purple">Deal Rating</option>
                         <option value="Title" class="dark-purple">Title</option>
@@ -55,6 +55,16 @@
                     </select>
                 </div>
                 <!-- END Sortby dropdown-->
+
+                <!-- START: Page buttons (top) -->
+                <div class="flex gap-2 justify-center items-center mt-2" v-if="data">
+                    <button @click="params.pageNumber -=1; findDeals()" v-if="params.pageNumber !== 0" class="button border border-gray-100 rounded-full text-gray-100 px-1"> &lt; </button>
+                    
+                    <span class="text-gray-300 mx-5">Page {{parseInt(params.pageNumber) +1}}</span>
+
+                    <button @click="params.pageNumber +=1; findDeals()" v-if="params.pageNumber < numOfPage " class="button border border-gray-100 rounded-full text-gray-100 px-1"> &gt; </button>
+                </div>
+                <!-- END: Page buttons (top) -->
 
             </div>
 
@@ -71,7 +81,7 @@
             <div v-if="data && !loading" class="flex flex-col gap-5 overflow-y-scroll p-4 fade-in max-h-[550px]">
                 
                 <!-- START individual result block -->
-                <div v-for="result in data" class="grid grid-cols-3 items-center rounded-xl bg-[#fefdffb0] p-4 shadow-2xl gap-4">
+                <div v-for="result in data" class="grid grid-cols-3 items-center rounded-xl bg-[#fefdffb0] opacity-75 p-4 shadow-2xl gap-4">
                     
                     <!-- START: thumbnail del juego -->
                     <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/`">
@@ -104,25 +114,25 @@
 
             </div>
 
-            <!-- START: Page buttons -->
+            <!-- START: Page buttons (bottom) -->
             <div class="flex gap-2 justify-center mt-2  ">
-                <button @click="params.pageNumber = 0; findDeals()" v-if="params.pageNumber > 1" class="button button-sm button-secondary h-[2rem]"> &lt;&lt; </button>
-                <button @click="params.pageNumber -=1; findDeals()" v-if="params.pageNumber !== 0" class="button button-sm button-secondary h-[2rem]"> &lt; </button>
+                <button @click="params.pageNumber = 0; findDeals()" v-if="params.pageNumber > 1" class="button border border-gray-100 rounded-full text-gray-100 px-1"> &lt;&lt; </button>
+                <button @click="params.pageNumber -=1; findDeals()" v-if="params.pageNumber !== 0" class="button border border-gray-100 rounded-full text-gray-100 px-1"> &lt; </button>
                 
-                <a @click="params.pageNumber -=3; findDeals()" v-if="params.pageNumber > 2" class="text-gray-300">{{params.pageNumber - 2}}</a>
-                <a @click="params.pageNumber -=2; findDeals()" v-if="params.pageNumber > 1" class="text-gray-300">{{params.pageNumber - 1}}</a>
-                <a @click="params.pageNumber -=1; findDeals()" v-if="params.pageNumber > 1" class="text-gray-300">{{params.pageNumber}}</a>
+                <a @click="params.pageNumber -=3; findDeals()" v-if="params.pageNumber > 2" class="text-gray-500">{{params.pageNumber - 2}}</a>
+                <a @click="params.pageNumber -=2; findDeals()" v-if="params.pageNumber > 1" class="text-gray-500">{{params.pageNumber - 1}}</a>
+                <a @click="params.pageNumber -=1; findDeals()" v-if="params.pageNumber > 1" class="text-gray-500">{{params.pageNumber}}</a>
 
-                <span class="text-gray-300 mx-5">Page {{params.pageNumber +1}}</span>
+                <span class="text-gray-300 mx-5">Page {{parseInt(params.pageNumber) +1}}</span>
 
-                <a @click="params.pageNumber +=1; findDeals()" v-if="params.pageNumber < numOfPage -1" class="text-gray-300">{{params.pageNumber + 2}}</a>
-                <a @click="params.pageNumber +=2; findDeals()" v-if="params.pageNumber < numOfPage -1" class="text-gray-300">{{params.pageNumber + 3}}</a>
-                <a @click="params.pageNumber +=3; findDeals()" v-if="params.pageNumber < numOfPage -1" class="text-gray-300">{{params.pageNumber + 4}}</a>
+                <a @click="params.pageNumber +=1; findDeals()" v-if="params.pageNumber < numOfPage -1" class="text-gray-500">{{params.pageNumber + 2}}</a>
+                <a @click="params.pageNumber +=2; findDeals()" v-if="params.pageNumber < numOfPage -2" class="text-gray-500">{{params.pageNumber + 3}}</a>
+                <a @click="params.pageNumber +=3; findDeals()" v-if="params.pageNumber < numOfPage -3" class="text-gray-500">{{params.pageNumber + 4}}</a>
                 
-                <button @click="params.pageNumber +=1; findDeals()" v-if="params.pageNumber < numOfPage " class="button button-sm button-secondary h-[2rem]"> &gt; </button>
-                <button @click="params.pageNumber = numOfPage; findDeals()" v-if="params.pageNumber < (numOfPage - 1)" class="button button-sm button-secondary h-[2rem]"> &gt;&gt; </button>
+                <button @click="params.pageNumber +=1; findDeals()" v-if="params.pageNumber < numOfPage " class="button border border-gray-100 rounded-full text-gray-100 px-1"> &gt; </button>
+                <button @click="params.pageNumber = numOfPage; findDeals()" v-if="params.pageNumber < (numOfPage - 1)" class="button border border-gray-100 rounded-full text-gray-100 px-1"> &gt;&gt; </button>
             </div>
-            <!-- END: Page buttons -->
+            <!-- END: Page buttons (bottom) -->
             
         </div>
         <!-- END: Columna Derecha para resultados -->
