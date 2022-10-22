@@ -1,9 +1,23 @@
-# Vue 3 + Vite
+# CODEOP FINAL PROJECT
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
+## Creación del boilerplate
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
-  
-  #
+1. Para empezar hemos creado nuestro repositorio llamado codeop-final-project: https://github.com/gatzcat/codeop-final-project
+2. Lo hemos clonado en nuestro ordenador y hemos empezado a instalar los paquetes y dependencias necesarios.
+3. Hemos instalado Vue, siguiendo los pasos de: https://tailwindcss.com/docs/guides/vite#vue
+4. Hemos instalado Vue route, siguiendo los pasos de: https://router.vuejs.org/installation.html
+5. Hemos installado npm: npm install
+6. Hemos puesto en desarrollo la web: npm run dev
+
+## Creación del prototipo
+
+Para crear el prototipo de la aplicación que queríamos crear, hemos usado figma.
+Hemos escogido una plantilla un poco similar a lo que estábamos buscando, y hemos
+añadido las modificaciones necesarias.
+
+
+
+## Notas
+
+_Este es un proyecto de estudiante creado por Adeline Lim y Lucía Lázaro._
