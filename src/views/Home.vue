@@ -76,6 +76,9 @@
                         <option value="CAD" class="options">CAD</option>
                     </select>
                 </div>
+
+                <!-- <CurrencySelector v-model="currency" :currency="currency" @findDeals=findDeals /> -->
+
                 <!-- END Currency dropdown-->
 
                 <!-- START: Page buttons (top) -->
