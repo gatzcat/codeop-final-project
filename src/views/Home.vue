@@ -14,14 +14,14 @@
                 <input v-model="params.title" type="text" class="bg-gray-800 border border-gray-600 rounded-full p-2 text-gray-200" placeholder="Game Title" />
                 
                 <!-- TODO: combinar min y max price? -->
-                <div class="flex justify-around">
+                <div class="flex justify-between">
                     <label for="Min Price">Min Price</label>
                     <label for="Max Price">Max Price</label>
-                    <input v-model="params.maxPrice" type="text" class="border border-gray-300 rounded-lg w-8" />
-                    <input v-model="params.maxPrice" type="range" class="p-2" />
-                    
-                    <label for="AAA game">On-sale games only</label>
-                    <input v-model="params.onSale" type="checkbox" name="On sale games" id="On sale" class="checkbox absolute z-10 cursor-pointer opacity-0">
+                </div>
+                
+                <div class="flex justify-between">
+                    <input @change="findDeals()" v-model="params.lowerPrice" type="number" class="w-16 px-2 border bg-gray-800 text-gray-200 border-gray-600 rounded-lg" />
+                    <input @change="findDeals()" v-model="params.upperPrice" type="number" class="w-16 px-2 border bg-gray-800 text-gray-200 border-gray-600 rounded-lg" />
                 </div>
 
                 <div>
@@ -105,10 +105,11 @@
                         
                         <p v-if="result.metacriticLink"><a :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">Metacritic Score: </a> {{result.metacriticScore}}</p>
                         
-                        <div class="flex gap-2 text-lg">
+                        <Price currencyData="GBP" :usdSalesPrice="result.salePrice" :usdNormalPrice="result.normalPrice"/>
+                        <!-- <div class="flex gap-2 text-lg">
                             <span class="text-red-500 font-semibold">${{result.salePrice}} </span> 
                             <span class="text-sm text-gray-600 line-through"> ${{result.normalPrice}}</span>
-                        </div>
+                        </div> -->
                         
                         <p v-if="parseInt(result.dealRating) !== 0" class="text-sm">Deal Rating: {{result.dealRating}}</p>
                     </div>
@@ -153,6 +154,8 @@
 
 </template>
 <script>
+import Price from '../components/Price.vue'
+
 export default {
     name: "home",
     data() {
@@ -160,6 +163,7 @@ export default {
             loading: false,
             data: null,
             numOfPage: null,
+            currency: "usd",
             params: {
                 title: null,
                 upperPrice: 20,
@@ -169,55 +173,51 @@ export default {
                 steamRating: 60,
                 pageNumber: 0,
             }
-        }
+        };
     },
     methods: {
         // hace llamada al API
         async findDeals() {
-            try 
-            {
-                this.loading = true
-                const response = await fetch(this.getUrl)
+            try {
+                this.loading = true;
+                const response = await fetch(this.getUrl);
                 // response = await fetch(`https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=${this.upperPrice}&lowerPrice=${this.lowerPrice}&onSale=${this.onSale}&title=${this.title}`)
-                const responseJson = await response.json()
-                this.data = responseJson
+                const responseJson = await response.json();
+                this.data = responseJson;
                 this.numOfPage = response.headers.get("x-total-page-count");
-            } catch (error) {
+            }
+            catch (error) {
                 console.log(error);
-            } finally {
-                this.loading = false
+            }
+            finally {
+                this.loading = false;
             }
         },
-
-        biggerThumbnail(url){
-            let newUrl = url.replace("capsule_sm_120", "header")
-            return newUrl
+        biggerThumbnail(url) {
+            let newUrl = url.replace("capsule_sm_120", "header");
+            return newUrl;
         },
-
         processParams() {
-            let newValue = this.params.onSale? 1 : 0
-            this.params.onSale = newValue 
+            let newValue = this.params.onSale ? 1 : 0;
+            this.params.onSale = newValue;
         },
-
     },
     computed: {
         // construye el URL con los parametros para hacer la llamada
         getUrl() {
-            this.processParams()
-            let url = `https://www.cheapshark.com/api/1.0/deals?storeID=1&desc=0&pageSize=10`
+            this.processParams();
+            let url = `https://www.cheapshark.com/api/1.0/deals?storeID=1&desc=0&pageSize=10`;
             for (let [paramName, paramValue] of Object.entries(this.params)) {
-                url += paramValue ? `&${paramName}=${paramValue}` : ""
+                url += paramValue ? `&${paramName}=${paramValue}` : "";
             }
             console.log(url);
-            return url
+            return url;
         },
-
     },
-
     mounted() {
-        this.findDeals()
+        this.findDeals();
     },
-
+    components: { Price }
 }
 </script>
 
