@@ -22,6 +22,7 @@
                     
                     <label for="AAA game">On-sale games only</label>
                     <input v-model="params.onSale" type="checkbox" name="On sale games" id="On sale" class="checkbox absolute z-10 cursor-pointer opacity-0">
+                </div>
 
                 <div>
                     <input @change="findDeals()" v-model="params.lowerPrice" type="range" class="slider" />
