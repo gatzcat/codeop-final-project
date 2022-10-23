@@ -63,6 +63,21 @@
                 </div>
                 <!-- END Sortby dropdown-->
 
+                <!-- START Currency dropdown-->
+                <div class="flex gap-3 items-center">
+                    <select v-model="currency" @change="findDeals()" id="currency" name="currency" class="rounded-full py-1 px-2 dark-purple text-gray-300 text-center border border-gray-300 mb-4 ">
+                        <option value="USD" class="options">USD</option>
+                        <option value="EUR" class="options">EUR</option>
+                        <option value="GBP" class="options">GBP</option>
+                        <option value="JPY" class="options">JPY</option>
+                        <option value="AUD" class="options">AUD</option>
+                        <option value="NZD" class="options">NZD</option>
+                        <option value="SGD" class="options">SGD</option>
+                        <option value="CAD" class="options">CAD</option>
+                    </select>
+                </div>
+                <!-- END Currency dropdown-->
+
                 <!-- START: Page buttons (top) -->
                 <div class="flex gap-2 justify-center items-center mt-2" v-if="data">
                     <button @click="params.pageNumber -=1; findDeals()" v-if="params.pageNumber !== 0" class="pagination-buttons"> &lt; </button>
@@ -105,7 +120,7 @@
                         
                         <p v-if="result.metacriticLink"><a :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">Metacritic Score: </a> {{result.metacriticScore}}</p>
                         
-                        <Price currencyData="GBP" :usdSalesPrice="result.salePrice" :usdNormalPrice="result.normalPrice"/>
+                        <Price :currencyData="currency" :usdSalesPrice="result.salePrice" :usdNormalPrice="result.normalPrice"/>
                         <!-- <div class="flex gap-2 text-lg">
                             <span class="text-red-500 font-semibold">${{result.salePrice}} </span> 
                             <span class="text-sm text-gray-600 line-through"> ${{result.normalPrice}}</span>
@@ -158,12 +173,17 @@ import Price from '../components/Price.vue'
 
 export default {
     name: "home",
+
+    components: {
+        price: Price
+    },
+
     data() {
         return {
             loading: false,
             data: null,
             numOfPage: null,
-            currency: "usd",
+            currency: "USD",
             params: {
                 title: null,
                 upperPrice: 20,
