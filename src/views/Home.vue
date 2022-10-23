@@ -53,12 +53,12 @@
                 <div class="flex gap-3 items-center">
                     <label for="sort" class="text-lg">Sort by:</label>
                     <select v-model="params.sortBy" @change="findDeals()" id="sort" name="sort" class="rounded-full py-1 px-2 dark-purple text-gray-300 text-center border border-gray-300 mb-4 ">
-                        <option value="Price" class="dark-purple">Price</option>
-                        <option value="Deal+Rating" class="dark-purple">Deal Rating</option>
-                        <option value="Title" class="dark-purple">Title</option>
-                        <option value="Savings" class="dark-purple">Savings</option>
-                        <option value="Metacritic" class="dark-purple">Metacritic Score</option>
-                        <option value="Release" class="dark-purple">Release Date</option>
+                        <option value="Price" class="options">Price</option>
+                        <option value="Deal+Rating" class="options">Deal Rating</option>
+                        <option value="Title" class="options">Title</option>
+                        <option value="Savings" class="options">Savings</option>
+                        <option value="Metacritic" class="options">Metacritic Score</option>
+                        <option value="Release" class="options">Release Date</option>
                     </select>
                 </div>
                 <!-- END Sortby dropdown-->
