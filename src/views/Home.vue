@@ -123,7 +123,7 @@
                         
                         <p v-if="result.metacriticLink"><a :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">Metacritic Score: </a> {{result.metacriticScore}}</p>
                         
-                        <Price :currencyData="currency" :usdSalesPrice="result.salePrice" :usdNormalPrice="result.normalPrice"/>
+                        <Price :currencyData="currency" :usdSalesPrice="result.salePrice" :usdNormalPrice="result.normalPrice" :onSale="result.isOnSale" />
                         <!-- <div class="flex gap-2 text-lg">
                             <span class="text-red-500 font-semibold">${{result.salePrice}} </span> 
                             <span class="text-sm text-gray-600 line-through"> ${{result.normalPrice}}</span>

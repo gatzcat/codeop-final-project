@@ -2,7 +2,7 @@
     <div>
         <div v-if="salesPrice" class="flex gap-2 text-lg">
             <span class="text-red-500 font-semibold">{{niceSalesPrice}}</span> 
-            <span class="text-sm text-gray-600 line-through">{{niceNormalPrice}}</span>
+            <span v-if="onSale == 1" class="text-sm text-gray-600 line-through">{{niceNormalPrice}}</span>
         </div>
     </div>
 </template>
@@ -19,7 +19,7 @@ export default {
         }
     },
 
-    props: ['currencyData', 'usdSalesPrice', 'usdNormalPrice'],
+    props: ['currencyData', 'usdSalesPrice', 'usdNormalPrice', 'onSale'],
     methods: {
         async getCurrency() {
             try {
