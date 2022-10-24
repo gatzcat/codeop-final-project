@@ -148,7 +148,7 @@
                     <div class="justify-self-start">
                         
                         <p class="text-3xl">{{result.steamRatingPercent}}%</p>
-                        <span class="rounded-2xl text-xs px-2 py-0.5 bg-stone-700 text-gray-100">{{result.steamRatingText}} </span>
+                        <span class="invisible lg:visible lg:rounded-2xl lg:text-xs lg:px-2 lg:py-0.5 lg:bg-stone-700 lg:text-gray-100">{{result.steamRatingText}} </span>
                     </div>
                     <!-- END: steam rating -->
                 </div>
