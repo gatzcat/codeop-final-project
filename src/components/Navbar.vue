@@ -10,17 +10,6 @@
 
         <div class="flex flex-col-2 w-3/4">
 
-          <!-- START: test name text, mira a ver si te gusta, si no, quitalo" -->
-          <!-- <div id="test text logo group" class="flex flex-col relative w-1/5 items-center">
-            <h1 class="text-white text-9xl ">
-              KIBU
-            </h1>
-            <h1 class="text-3xl font-bold text-[#fcfcfcd3] absolute bottom-1">
-              games
-            </h1>
-          </div> -->
-          <!-- END: test name text, mira a ver si te gusta, si no, quitalo" -->
-
           <!-- START original name text -->
           <h1 class="text-white text-8xl ml-6 lg:text-9xl lg:ml-10">
             KIBU
