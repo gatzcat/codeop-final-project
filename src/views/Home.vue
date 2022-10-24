@@ -61,7 +61,7 @@
         <!-- End: Columna Izquierda para buscador -->
 
         <!-- START: Columna Derecha para resultados -->
-        <div id="result column" class="flex flex-col w-2/3 p-16 mr-10 border-4 border-purple rounded-[80px] dark-purple gap-2  overflow-y-auto align-middle">
+        <div id="result column" class="flex flex-col w-100 rounded-[30px] md:w-3/5 md:p-4 md:border-2 md:rounded-[50px] lg:w-2/3 lg:p-16 lg:mr-10 lg:border-4 border-purple lg:rounded-[80px] dark-purple gap-2  overflow-y-auto align-middle">
             
             
             <div class="flex justify-between ">
