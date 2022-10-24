@@ -10,17 +10,6 @@
 
         <div class="flex flex-col-2 w-3/4">
 
-          <!-- START: test name text, mira a ver si te gusta, si no, quitalo" -->
-          <!-- <div id="test text logo group" class="flex flex-col relative w-1/5 items-center">
-            <h1 class="text-white text-9xl ">
-              KIBU
-            </h1>
-            <h1 class="text-3xl font-bold text-[#fcfcfcd3] absolute bottom-1">
-              games
-            </h1>
-          </div> -->
-          <!-- END: test name text, mira a ver si te gusta, si no, quitalo" -->
-
           <!-- START original name text -->
           <h1 class="text-white text-9xl ml-10">
             KIBU
@@ -32,7 +21,6 @@
         </div>
         
         <div class="flex items-center opacity-75">
-            <!-- <CurrencySelector />     -->
             <img src="../img/bookmark-solid.png" class="h-9 m-4 cursor-pointer">
             <img src="../img/bell-solid.png" class="h-9 m-4 cursor-pointer">
             <img src="../img/user-solid.png" class="h-9 m-4 cursor-pointer">

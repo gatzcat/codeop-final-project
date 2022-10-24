@@ -17,8 +17,8 @@ Para obtener los datos, la app llama a la [API de CheapShark](https://apidocs.ch
 
 ## Related Documents
 - [x] [Figma](https://bit.ly/3sg32E1) 
-- [] [Trello board](https://bit.ly/3z4yit8)
-- [] TODO: Flowchart
+- [ ] [Trello board](https://bit.ly/3z4yit8)
+- [ ] TODO: Flowchart
 
 ## Pasos Iniciales
 
