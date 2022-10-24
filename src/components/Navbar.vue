@@ -5,7 +5,7 @@
       <div class="flex flex-col-3 gap-2">
         
         <div class="w-20 mt-8 cursor-pointer">
-          <img src="../img/logo.png">
+          <img src="../img/logovolume.png">
         </div>
 
         <div class="flex flex-col-2 w-3/4">
