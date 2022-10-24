@@ -3,7 +3,7 @@
     <div class="flex flex-row justify-center">
         
         <!-- Start: Columna Izquierda para buscador -->
-        <div id="search column" class="w-1/3 p-10 ml-10 border-4 h-2/3 border-purple rounded-[80px] dark-purple">
+        <div id="search column" class="w-100 rounded-[30px] md:w-2/5 md:p-6 md:py-8 md:border-2 md:rounded-[50px] lg:w-1/3 lg:p-10 lg:ml-10 lg:border-4 h-2/3 border-purple lg:rounded-[80px] dark-purple">
 
             <div class="flex justify-center mb-10">
                 <img src="../img/logosteam.png" class=" w-1/3 ">
