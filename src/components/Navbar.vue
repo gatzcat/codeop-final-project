@@ -30,7 +30,7 @@
           </p>
           <!-- START original name text -->
         </div>
-        
+         
         <div class="flex items-center opacity-75">
             <!-- <CurrencySelector />     -->
             <img src="../img/bookmark-solid.png" class="h-6 m-4 lg:h-9 cursor-pointer">
