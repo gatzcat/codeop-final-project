@@ -3,7 +3,7 @@
     <div class="flex flex-col lg:flex-row justify-center relative">
         
         <!-- Start: Columna Izquierda para buscador -->
-        <div id="search column" class="w-100 rounded-[30px] md:w-2/5 md:p-6 md:py-8 md:border-2 md:rounded-[50px] lg:w-1/3 lg:p-10 lg:ml-10 lg:border-4 h-2/3 border-purple lg:rounded-[80px] dark-purple sticky top-10">
+        <div id="search column" class="w-100 rounded-[30px] pt-8 p-6 md:w-2/5 md:p-6 md:py-8 md:border-2 md:rounded-[50px] lg:w-1/3 lg:p-10 lg:ml-10 lg:border-4 h-2/3 border-purple lg:rounded-[80px] dark-purple sticky top-10">
 
             <div class="flex justify-center mb-10">
                 <img src="../img/logosteamblanco.png" class=" w-1/5 opacity-50" alt="Logotipo de Steam">
@@ -61,7 +61,7 @@
         <!-- End: Columna Izquierda para buscador -->
 
         <!-- START: Columna Derecha para resultados -->
-        <div id="result column" class="flex flex-col rounded-[30px] md:w-3/5 md:p-4 md:border-2 md:rounded-[50px] lg:w-2/3 lg:p-16 lg:mr-10 lg:border-4 border-purple lg:rounded-[80px] dark-purple gap-2 overflow-y-auto align-middle">
+        <div id="result column" class="flex flex-col rounded-[30px] p-4 md:w-3/5 md:p-4 md:border-2 md:rounded-[50px] lg:w-2/3 lg:p-16 lg:mr-10 lg:border-4 border-purple lg:rounded-[80px] dark-purple gap-2 overflow-y-auto align-middle">
             
             
             <div class="flex justify-between ">
