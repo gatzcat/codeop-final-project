@@ -21,6 +21,9 @@ Si el usuario le gusta alguna oferta, puede clicar en la imagen or titulo del ju
 - [Vue Router](https://router.vuejs.org/)
 - [Vercel](https://vercel.com/)
 - ~~[Material Tailwind](https://www.material-tailwind.com/)~~
+- [Google fonts](https://fonts.google.com/?query=poppins)
+- [font space](https://www.fontspace.com/debug-font-f53756)
+- [Font Awesome](https://fontawesome.com/search)
 
 ## Related Documents
 - [x] [Prototipo en Figma](https://bit.ly/3sg32E1) 
