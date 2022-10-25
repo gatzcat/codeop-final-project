@@ -1,6 +1,6 @@
 <template>
     <!-- START: CONTENEDOR PARA TODAS LAS COSAS EN HOME -->
-    <div class="flex flex-row justify-center">
+    <div class="flex flex-col lg:flex-row justify-center">
         
         <!-- Start: Columna Izquierda para buscador -->
         <div id="search column" class="w-100 rounded-[30px] md:w-2/5 md:p-6 md:py-8 md:border-2 md:rounded-[50px] lg:w-1/3 lg:p-10 lg:ml-10 lg:border-4 h-2/3 border-purple lg:rounded-[80px] dark-purple">
@@ -61,7 +61,7 @@
         <!-- End: Columna Izquierda para buscador -->
 
         <!-- START: Columna Derecha para resultados -->
-        <div id="result column" class="flex flex-col w-100 rounded-[30px] md:w-3/5 md:p-4 md:border-2 md:rounded-[50px] lg:w-2/3 lg:p-16 lg:mr-10 lg:border-4 border-purple lg:rounded-[80px] dark-purple gap-2  overflow-y-auto align-middle">
+        <div id="result column" class="flex flex-col w-100 rounded-[30px] md:w-3/5 md:p-4 md:border-2 md:rounded-[50px] lg:w-2/3 lg:p-16 lg:mr-10 lg:border-4 border-purple lg:rounded-[80px] dark-purple gap-2 overflow-y-auto align-middle max-h-2/3">
             
             
             <div class="flex justify-between ">
@@ -115,7 +115,8 @@
             </div>
             <!-- END: loading spinner -->
 
-            <div v-if="data && !loading" class="flex flex-col gap-5 overflow-y-scroll px-6 py-2 fade-in max-h-[550px]">
+            <!-- START: results -->
+            <div v-if="data && !loading" class="flex flex-col gap-5 overflow-y-scroll px-6 py-2 fade-in">
                 
                 <!-- START individual result block -->
                 <div v-for="result in data" class="grid grid-cols-[2fr,3fr,1.5fr] items-center rounded-3xl bg-[#fefdffb0] opacity-85 px-4 py-2 shadow-xl gap-4">
@@ -136,10 +137,6 @@
                         <p v-if="result.metacriticLink"><a :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">Metacritic Score: </a> {{result.metacriticScore}}</p>
                         
                         <Price :currencyData="currency" :usdSalesPrice="result.salePrice" :usdNormalPrice="result.normalPrice" :onSale="result.isOnSale" />
-                        <!-- <div class="flex gap-2 text-lg">
-                            <span class="text-red-500 font-semibold">${{result.salePrice}} </span> 
-                            <span class="text-sm text-gray-600 line-through"> ${{result.normalPrice}}</span>
-                        </div> -->
                         
                         <p v-if="parseInt(result.dealRating) !== 0" class="text-sm">Deal Rating: {{result.dealRating}}</p>
                     </div>
@@ -148,13 +145,14 @@
                     <div class="justify-self-start">
                         
                         <p class="text-3xl">{{result.steamRatingPercent}}%</p>
-                        <span class="invisible lg:visible lg:rounded-2xl lg:text-xs lg:px-2 lg:py-0.5 lg:bg-stone-700 lg:text-gray-100">{{result.steamRatingText}} </span>
+                        <span class="hidden lg:inline lg:rounded-2xl lg:text-xs lg:px-2 lg:py-0.5 lg:bg-stone-700 lg:text-gray-100">{{result.steamRatingText}} </span>
                     </div>
                     <!-- END: steam rating -->
                 </div>
                 <!-- END individual result block -->
 
             </div>
+            <!-- END: results -->
 
             <!-- START: Page buttons (bottom) -->
             <div v-if="!loading" class="flex gap-2 justify-center mt-2  ">

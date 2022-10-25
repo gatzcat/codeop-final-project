@@ -15,7 +15,6 @@
 
         body{
          font-family: 'Poppins', sans-serif;
-         /* @apply bg-[#C2ABDF] */
          @apply bg-gradient-to-br from-stone-800 to-slate-800
         } 
 
@@ -28,7 +27,6 @@
         }
 
         .dark-purple{
-          /* @apply bg-[#504872] */
           @apply bg-gradient-to-b from-gray-700 to-neutral-900 opacity-90
         }
 

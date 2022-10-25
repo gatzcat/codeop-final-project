@@ -4,7 +4,11 @@
 ## Descripción
 **KIBU Games** es una web app dirigido a usuarios gamers. La web app mostrará ofertas de videojuegos desde la plataforma [Steam](https://store.steampowered.com/).
 
-Para obtener los datos, la app llama a la [API de CheapShark](https://apidocs.cheapshark.com/).
+El usuario podrá filtrar por los juegos de Steam con diferentes parametros, como el título, precios máximo y mínimo, la puntuación del Steam (Steam rating).
+
+Para obtener los datos, la app llama a la [API de CheapShark](https://apidocs.cheapshark.com/). El usuario también podrá ordenar los resultados por precio, puntuación y otros parametros.
+
+Adicionalmente, es posible visualizar los precios en monedas diferentes. Los datos del cambio de moneda son proporcionados por la A
 
 ## Tecnología Utilizada
 - HTML
