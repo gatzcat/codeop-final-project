@@ -22,9 +22,9 @@
          
         <div class="flex items-center opacity-75">
             <!-- <CurrencySelector />     -->
-            <img src="../img/bookmark-solid.png" class="h-4 m-3 md:h-6 md:m-4 lg:h-9 cursor-pointer">
-            <img src="../img/bell-solid.png" class="h-4 m-3 md:h-6 md:m-4 lg:h-9 cursor-pointer">
-            <img src="../img/user-solid.png" class="h-4 m-3 md:h-6 md:m-4 lg:h-9 cursor-pointer">
+            <img src="../img/bookmark-solid.png" class="h-4 m-3 md:h-6 md:m-4 lg:h-9 cursor-pointer" alt="bookmark icon">
+            <img src="../img/bell-solid.png" class="h-4 m-3 md:h-6 md:m-4 lg:h-9 cursor-pointer" alt="bell icon">
+            <img src="../img/user-solid.png" class="h-4 m-3 md:h-6 md:m-4 lg:h-9 cursor-pointer" alt="user icon">
         </div>
     </div> 
     </div>
