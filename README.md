@@ -22,7 +22,7 @@ Si el usuario le gusta alguna oferta, puede clicar en la imagen or titulo del ju
 - [Vercel](https://vercel.com/)
 - ~~[Material Tailwind](https://www.material-tailwind.com/)~~
 - [Google fonts](https://fonts.google.com/?query=poppins)
-- [font space](https://www.fontspace.com/debug-font-f53756)
+- [Font space](https://www.fontspace.com/debug-font-f53756)
 - [Font Awesome](https://fontawesome.com/search)
 
 ## Related Documents

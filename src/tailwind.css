@@ -31,7 +31,7 @@
         }
 
         .options {
-          @apply bg-[#504872]
+          @apply bg-gray-800
         }
 
         .dark-button {

@@ -3,7 +3,7 @@
     <div class="flex flex-col md:flex-row justify-center relative">
         
         <!-- Start: Columna Izquierda para buscador -->
-        <div id="search column" class="rounded-[30px] pt-8 p-6 md:p-6 md:py-8 md:border-2 md:rounded-[50px] lg:w-1/3 lg:p-10 lg:ml-10 lg:border-4 h-2/3 border-purple lg:rounded-[80px] dark-purple sticky top-10">
+        <div id="search column" class="rounded-[30px] pt-8 p-6 md:p-6 md:py-8 md:border-2 md:rounded-[50px] lg:w-1/3 lg:p-10 lg:ml-10 lg:border-4 h-2/3 border-purple lg:rounded-[80px] dark-purple md:sticky top-10">
 
             <div class="flex justify-center mb-10">
                 <img src="../img/logosteamblanco.png" class="w-1/5 opacity-50" alt="Logotipo de Steam">
