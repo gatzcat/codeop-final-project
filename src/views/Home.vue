@@ -1,11 +1,11 @@
 <template>
     <!-- START: CONTENEDOR PARA TODAS LAS COSAS EN HOME -->
-    <div class="flex flex-col md:flex-row justify-center relative">
+    <div class="flex flex-col md:flex-row justify-center relative gap-2">
         
         <!-- Start: Columna Izquierda para buscador -->
         <div id="search column" class="rounded-[30px] pt-8 p-6 md:p-6 md:py-8 md:border-2 md:rounded-[50px] lg:w-1/3 lg:p-10 lg:ml-10 lg:border-4 h-2/3 border-purple lg:rounded-[80px] dark-purple md:sticky top-10">
 
-            <div class="flex justify-center mb-10 hidden md:block">
+            <div class="flex justify-center mb-10 hidden sm:flex">
                 <img src="../img/logosteamblanco.png" class="w-1/5 opacity-50"  alt="Logotipo de Steam">
             </div>
 
@@ -13,48 +13,54 @@
                 <label for="Game title" class="hidden">Game title</label>
                 <input @focus="searchFocus()"  v-model="params.title" type="text" class="bg-gray-800 border border-gray-600 rounded-full p-2 text-gray-200" placeholder="Game Title" />
                 
-                <!-- TODO: combinar min y max price? -->
                 <div class="flex justify-between">
                     <label for="Min Price">Min Price</label>
-                    <label for="Max Price">Max Price</label>
+                    <input @change="findDeals()" v-model="params.lowerPrice" type="range" class="hidden sm:inline slider w-1/2" />
+                    <input @change="findDeals()" v-model="params.lowerPrice" type="number" class=" w-1/5 px-2 border bg-gray-800 text-gray-200 border-gray-600 rounded-lg" />
                 </div>
                 
                 <div class="flex justify-between">
-                    <input @change="findDeals()" v-model="params.lowerPrice" type="number" class="w-16 px-2 border bg-gray-800 text-gray-200 border-gray-600 rounded-lg" />
-                    <input @change="findDeals()" v-model="params.upperPrice" type="number" class="w-16 px-2 border bg-gray-800 text-gray-200 border-gray-600 rounded-lg" />
+                    <label for="Max Price">Max Price</label>
+                    <input @change="findDeals()" v-model="params.upperPrice" type="range" class="hidden sm:inline slider w-1/2" />                    
+                    <input @change="findDeals()" v-model="params.upperPrice" type="number" class="w-1/5 px-2 border bg-gray-800 text-gray-200 border-gray-600 rounded-lg" />
                 </div>
 
-                <div>
-                    <input @change="findDeals()" v-model="params.lowerPrice" type="range" class="slider" />
-                    <input @change="findDeals()" v-model="params.upperPrice" type="range" class="slider" />
-                </div>
-                
-                <label for="Max Price">Min Steam Rating</label>
-                <input @change="findDeals()" v-model="params.steamRating" type="text" class="w-16 px-2 border bg-gray-800 text-gray-200 border-gray-600 rounded-lg" />
-                <input @change="findDeals()" v-model="params.steamRating" type="range" class="slider" />
-                
-                <div class="flex gap-2">
-                    <label for="On sale">On-sale only</label>
-                    <input @change="findDeals()" v-model="params.onSale" type="checkbox" :true-value="1" :false-value="0" name="On sale games" id="On sale" class="w-4">
+                <div class="flex flex-col gap-3">
+                    <div class="flex justify-between">
+                        <label for="Max Price">Min Steam Rating</label>
+                        <input @change="findDeals()" v-model="params.steamRating" type="text" class="w-1/5 px-2 border bg-gray-800 text-gray-200 border-gray-600 rounded-lg" />
+                    </div>
+                    <input @change="findDeals()" v-model="params.steamRating" type="range" class="slider w-full" />
                 </div>
 
-                <!-- START Currency dropdown-->
-                <div class="flex gap-3 items-center">
-                    <select v-model="currency" @change="findDeals()" id="currency" name="currency" class="rounded-full py-1 px-2 dark-purple text-gray-200 text-center border border-gray-800 ">
-                        <option value="USD" class="options">USD</option>
-                        <option value="EUR" class="options">EUR</option>
-                        <option value="GBP" class="options">GBP</option>
-                        <option value="JPY" class="options">JPY</option>
-                        <option value="AUD" class="options">AUD</option>
-                        <option value="NZD" class="options">NZD</option>
-                        <option value="SGD" class="options">SGD</option>
-                        <option value="CAD" class="options">CAD</option>
-                    </select>
+                <!-- START: onsale and currency -->
+                <div class="flex gap-2 justify-between">
+                    
+                    <div class="flex gap-2 items center justify-center">
+                        <label for="On sale">On-sale only</label>
+                        <input @change="findDeals()" v-model="params.onSale" type="checkbox" :true-value="1" :false-value="0" name="On sale games" id="On sale" class="w-4">
+                    </div>
+
+                    <!-- START Currency dropdown-->
+                    <div class="flex gap-3 items-center">
+                        <select v-model="currency" @change="findDeals()" id="currency" name="currency" class="rounded-full py-1 px-2 dark-purple text-gray-200 text-center border border-gray-800 ">
+                            <option value="USD" class="options">USD</option>
+                            <option value="EUR" class="options">EUR</option>
+                            <option value="GBP" class="options">GBP</option>
+                            <option value="JPY" class="options">JPY</option>
+                            <option value="AUD" class="options">AUD</option>
+                            <option value="NZD" class="options">NZD</option>
+                            <option value="SGD" class="options">SGD</option>
+                            <option value="CAD" class="options">CAD</option>
+                        </select>
+                    </div>
+
+                    <!-- END Currency dropdown-->
+
                 </div>
+                <!-- END: onsale and currency -->
 
-                <!-- END Currency dropdown-->
-
-                <button @click="findDeals()" class="button dark-button p-2 m-2 mt-8 rounded-full text-white text-l">Search</button>
+                <button @click="findDeals()" class="button dark-button p-2 md:m-2 md:mt-8 rounded-full text-white text-l">Search</button>
             </form> 
             
         </div>
