@@ -5,13 +5,13 @@
         <!-- Start: Columna Izquierda para buscador -->
         <div id="search column" class="rounded-[30px] pt-8 p-6 md:p-6 md:py-8 md:border-2 md:rounded-[50px] lg:w-1/3 lg:p-10 lg:ml-10 lg:border-4 h-2/3 border-purple lg:rounded-[80px] dark-purple md:sticky top-10">
 
-            <div class="flex justify-center mb-10">
+            <div v-if="" class="flex justify-center mb-10">
                 <img src="../img/logosteamblanco.png" class="w-1/5 opacity-50" alt="Logotipo de Steam">
             </div>
 
             <form @submit.prevent class="flex flex-col gap-3">
                 <label for="Game title" class="hidden">Game title</label>
-                <input v-model="params.title" type="text" class="bg-gray-800 border border-gray-600 rounded-full p-2 text-gray-200" placeholder="Game Title" />
+                <input @focus="" v-model="params.title" type="text" class="bg-gray-800 border border-gray-600 rounded-full p-2 text-gray-200" placeholder="Game Title" />
                 
                 <!-- TODO: combinar min y max price? -->
                 <div class="flex justify-between">
@@ -61,7 +61,7 @@
         <!-- End: Columna Izquierda para buscador -->
 
         <!-- START: Columna Derecha para resultados -->
-        <div id="result column" class="lg:flex flex-col rounded-[30px] p-4 md:w-3/5 md:p-4 md:border-2 md:rounded-[50px] lg:w-2/3 lg:p-16 lg:mr-10 lg:border-4 border-purple lg:rounded-[80px] dark-purple gap-2 overflow-y-auto align-middle">
+        <div id="result column" class="lg:flex flex-col rounded-[30px] p-4 md:w-3/5 md:p-4 md:border-2 md:rounded-[50px] lg:w-2/3 lg:p-16 lg:mr-10 lg:border-4 border-purple lg:rounded-[80px] dark-purple gap-2  align-middle">
             
             
             <div class="flex justify-between ">
