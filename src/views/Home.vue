@@ -125,12 +125,12 @@
             <div v-if="data && !loading" class="flex flex-col gap-5 px-6 py-2 fade-in">
                 
                 <!-- START individual result block -->
-                <div v-for="result in data" class="grid grid-cols-[2fr,3fr,1.5fr] items-center rounded-3xl bg-[#fefdffb0] opacity-85 px-4 py-2 shadow-xl gap-4">
+                <div v-for="result in data" class="grid grid-rows xl:grid-cols-[2fr,3fr,1.5fr] items-center rounded-3xl bg-[#fefdffb0] opacity-85 px-4 py-2 shadow-xl gap-4">
                     
                     <!-- START: thumbnail del juego -->
                     <div class="relative">
                         <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/`">
-                            <img :src="`${biggerThumbnail(result.thumb)}`" :alt="`${result.title}`" class="drop-shadow-md rounded-3xl max-h-[8rem] grow" />
+                            <img :src="`${biggerThumbnail(result.thumb)}`" :alt="`${result.title}`" class="drop-shadow-md rounded-3xl w-full lg:max-h-[8rem] grow" />
                         </a>
                         <span v-if="parseInt(result.savings) !== 0" class="absolute bottom-1 right-2 rounded-tl-xl rounded-3xl text-sm text-lime-500 pl-2 opacity-80 bg-gray-800 font-semibold">-{{Math.round(result.savings)}}%</span>
                     </div>
@@ -148,10 +148,10 @@
                     </div>
 
                     <!-- START: steam rating -->
-                    <div class="justify-self-start">
+                    <div class="flex justify-self-start hidden xl:inline">
                         
                         <p class="text-3xl">{{result.steamRatingPercent}}%</p>
-                        <span class="hidden lg:inline lg:rounded-2xl lg:text-xs lg:px-2 lg:py-0.5 lg:bg-stone-700 lg:text-gray-100">{{result.steamRatingText}} </span>
+                        <span class="lg:rounded-2xl lg:text-xs lg:px-2 lg:py-0.5 lg:bg-stone-700 lg:text-gray-100">{{result.steamRatingText}} </span>
                     </div>
                     <!-- END: steam rating -->
                 </div>
