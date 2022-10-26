@@ -73,7 +73,7 @@
             <div class="flex justify-between ">
                 <!-- START Sortby dropdown-->
                 <div class="flex gap-3 items-center">
-                    <label for="sort" class="text-lg">Sort by:</label>
+                    <label for="sort" class="text-l lg:text-xl">Sort by:</label>
                     <select v-model="params.sortBy" @change="findDeals()" id="sort" name="sort" class="rounded-full py-1 px-2 dark-purple text-gray-300 text-center border border-gray-300 mb-4 ">
                         <option value="Price" class="options">Price</option>
                         <option value="Deal+Rating" class="options">Deal Rating</option>
