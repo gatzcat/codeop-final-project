@@ -72,8 +72,8 @@
             
             <div class="flex justify-between ">
                 <!-- START Sortby dropdown-->
-                <div class="flex gap-3 items-center">
-                    <label for="sort" class="text-l lg:text-xl">Sort by:</label>
+                <div class="flex gap-3 items-center px-6">
+                    <label for="sort" class="">Sort by:</label>
                     <select v-model="params.sortBy" @change="findDeals()" id="sort" name="sort" class="rounded-full py-1 px-2 dark-purple text-gray-300 text-center border border-gray-300 mb-4 ">
                         <option value="Price" class="options">Price</option>
                         <option value="Deal+Rating" class="options">Deal Rating</option>
@@ -86,7 +86,7 @@
                 <!-- END Sortby dropdown-->
 
                 <!-- START: Page buttons (top) -->
-                <div class="flex gap-2 justify-center items-center mt-2" v-if="data">
+                <div class="flex gap-2 justify-center items-center mt-2 hidden md:flex" v-if="data">
                     <button @click="params.pageNumber -=1; findDeals()" v-if="params.pageNumber !== 0" class="pagination-buttons"> &lt; </button>
                     
                     <span class="text-gray-300 mx-1">Page {{parseInt(params.pageNumber) +1}}</span>
@@ -125,7 +125,7 @@
             <div v-if="data && !loading" class="flex flex-col gap-5 px-6 py-2 fade-in">
                 
                 <!-- START individual result block -->
-                <div v-for="result in data" class="grid grid-rows xl:grid-cols-[2fr,3fr,1.5fr] items-center rounded-3xl bg-[#fefdffb0] opacity-85 px-4 py-2 shadow-xl gap-4">
+                <div v-for="result in data" :key="result.title" class="grid grid-rows xl:grid-cols-[2fr,3fr,1.5fr] items-center rounded-3xl bg-[#fefdffb0] opacity-85 px-4 py-2 shadow-xl gap-4">
                     
                     <!-- START: thumbnail del juego -->
                     <div class="relative">
@@ -149,9 +149,12 @@
 
                     <!-- START: steam rating -->
                     <div class="flex justify-self-start hidden xl:inline">
-                        
-                        <p class="text-3xl">{{result.steamRatingPercent}}%</p>
-                        <span class="lg:rounded-2xl lg:text-xs lg:px-2 lg:py-0.5 lg:bg-stone-700 lg:text-gray-100">{{result.steamRatingText}} </span>
+                        <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/#app_reviews_hash`" class="text-3xl group relative">{{result.steamRatingPercent}}%
+                            <span 
+                                class="absolute hidden group-hover:flex -left-5 -top-2 -translate-y-full w-auto px-2 py-1 bg-orange-700 rounded-xl text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-orange-700">
+                                {{result.steamRatingText}}: <br>{{result.steamRatingCount}} reviews
+                            </span>
+                        </a>
                     </div>
                     <!-- END: steam rating -->
                 </div>
