@@ -74,7 +74,7 @@
                 <!-- START Sortby dropdown-->
                 <div class="flex gap-3 items-center px-6">
                     <label for="sort" class="">Sort by:</label>
-                    <select v-model="params.sortBy" @change="findDeals()" id="sort" name="sort" class="rounded-full py-1 px-2 dark-purple text-gray-300 text-center border border-gray-300 mb-4 ">
+                    <select v-model="params.sortBy" @change="findDeals()" id="sort" name="sort" class="rounded-full py-1 px-2 dark-purple text-gray-300 text-center border border-gray-300">
                         <option value="Price" class="options">Price</option>
                         <option value="Deal+Rating" class="options">Deal Rating</option>
                         <option value="Title" class="options">Title</option>

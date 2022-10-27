@@ -72,6 +72,8 @@ añadido las modificaciones necesarias.
 
 ## Aprendizajes
 - No deberíamos trabajar en la misma branch en git
+- Es importante tener aproximaciones del nivel de dificultad de cada tarea
+
 
 ## Credits
 _This is a student project by Adeline Lim and Lucía Lázaro that was created at [CodeOp](http://codeop.tech), a frontend development bootcamp in Barcelona._
