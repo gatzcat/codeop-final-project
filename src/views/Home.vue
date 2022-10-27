@@ -132,44 +132,50 @@
                         <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/`">
                             <img :src="`${biggerThumbnail(result.thumb)}`" :alt="`${result.title}`" class="drop-shadow-md rounded-3xl w-full lg:max-h-[8rem] grow" />
                         </a>
-                        <span v-if="parseInt(result.savings) !== 0" class="absolute bottom-1 right-2 rounded-tl-xl rounded-3xl text-sm text-lime-500 pl-2 opacity-80 bg-gray-800 font-semibold">-{{Math.round(result.savings)}}%</span>
+                        <span v-if="parseInt(result.savings) !== 0" class="absolute bottom-1 right-2 rounded-tl-xl rounded-3xl text-sm text-green-500 pl-2 opacity-80 bg-gray-800 font-semibold">-{{Math.round(result.savings)}}%</span>
                     </div>
                     
                     <!-- END: thumbnail juego -->
                     
+                    <!-- START: metacritic and small steam rating -->
                     <div class="">
                         <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/`">
                             <h6 class="font-semibold">
                                 {{result.title}}
-                                <i class="fa-brands fa-steam flex gap-1 text-sm xl:hidden"
-                            :class="`${(result.steamRatingPercent < 40) ? 'text-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'text-orange-700' : 'text-lime-600'}`">{{result.steamRatingPercent}} %</i>
                             </h6> 
-                            
                         </a>
-                        
-                        <a v-if="result.metacriticLink && result.metacriticScore > 0" :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">
-                            <div class="flex items-center gap-1">
-                                <img src="../img/Metacritic-icon.png" class="w-4 h-4" />
-                                <span class="hidden xl:inline">Metacritic Score: </span>
-                                {{result.metacriticScore}}
-                            </div>
-                        </a>
-                        
+                        <!-- START: metacritic and small steam rating -->
+                        <div class="flex xl:flex-col gap-3">
+                            <i class="fa-brands fa-steam flex gap-1 xl:hidden"><span :class="`${(result.steamRatingPercent < 40) ? 'text-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'text-orange-700' : 'text-green-600'}`">{{result.steamRatingPercent}} %</span></i>
+
+                            <a v-if="result.metacriticLink && result.metacriticScore > 0" :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">
+                                <div class="flex items-center gap-1">
+                                    <img src="../img/Metacritic-icon.png" class="w-3 h-3 xl:w-4 xl:h-4" />
+                                    <span class="hidden xl:inline">Metacritic Score: </span>
+                                    <span class="fa-brands" :class="`${(result.steamRatingPercent < 40) ? 'text-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'text-orange-700' : 'text-green-600'}`">
+                                        {{result.metacriticScore}}
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- END: metacritic and small steam rating -->
+
                         <Price :currencyData="currency" :usdSalesPrice="result.salePrice" :usdNormalPrice="result.normalPrice" :onSale="result.isOnSale" />
                         
                         <p v-if="parseInt(result.dealRating) !== 0" class="text-sm">Deal Rating: {{result.dealRating}}</p>
                     </div>
+                    
 
                     <!-- START: steam rating -->
                     <div class="flex justify-self-start hidden xl:inline">
                         <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/#app_reviews_hash`" class="text-3xl group relative">
                             <i class="fa-brands fa-steam opacity-80 hover:opacity-100"
-                            :class="`${(result.steamRatingPercent < 40) ? 'text-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'text-orange-700' : 'text-lime-600'}`"></i>
+                            :class="`${(result.steamRatingPercent < 40) ? 'text-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'text-orange-700' : 'text-green-600'}`"></i>
                             <span class="ml-1 font-mono">{{result.steamRatingPercent}}%</span>
 
                             <span 
                                 class="absolute hidden group-hover:flex -left-5 -top-2 -translate-y-full w-auto px-2 py-1 rounded-xl text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent"
-                                :class="`${(result.steamRatingPercent < 40) ? 'bg-red-700 after:border-t-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'bg-orange-700 after:border-t-orange-700' : 'bg-lime-600 after:border-t-lime-600'}`"
+                                :class="`${(result.steamRatingPercent < 40) ? 'bg-red-700 after:border-t-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'bg-orange-700 after:border-t-orange-700' : 'bg-green-600 after:border-t-green-600'}`"
                                 >
                                 {{result.steamRatingText}} <br>{{result.steamRatingCount}} reviews
                             </span>
