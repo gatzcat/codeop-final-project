@@ -140,7 +140,7 @@
                     <div class="">
                         <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/`"><h6 class="font-semibold">{{result.title}}</h6></a>
                         
-                        <p v-if="result.metacriticLink"><a :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">Metacritic Score: </a> {{result.metacriticScore}}</p>
+                        <p v-if="result.metacriticLink && result.metacriticScore > 0"><a :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">Metacritic Score: </a> {{result.metacriticScore}}</p>
                         
                         <Price :currencyData="currency" :usdSalesPrice="result.salePrice" :usdNormalPrice="result.normalPrice" :onSale="result.isOnSale" />
                         
@@ -149,7 +149,11 @@
 
                     <!-- START: steam rating -->
                     <div class="flex justify-self-start hidden xl:inline">
-                        <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/#app_reviews_hash`" class="text-3xl group relative">{{result.steamRatingPercent}}%
+                        <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/#app_reviews_hash`" class="text-3xl group relative" 
+                            :class="`${(result.steamRatingPercent < 40) ? 'text-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'text-orange-700' : 'text-green-700'}`">
+                            
+                            {{result.steamRatingPercent}}%
+
                             <span 
                                 class="absolute hidden group-hover:flex -left-5 -top-2 -translate-y-full w-auto px-2 py-1 bg-orange-700 rounded-xl text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-orange-700">
                                 {{result.steamRatingText}}: <br>{{result.steamRatingCount}} reviews
@@ -224,7 +228,6 @@ export default {
             try {
                 this.loading = true;
                 const response = await fetch(this.getUrl);
-                // response = await fetch(`https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=${this.upperPrice}&lowerPrice=${this.lowerPrice}&onSale=${this.onSale}&title=${this.title}`)
                 const responseJson = await response.json();
                 this.data = responseJson;
                 this.numOfPage = response.headers.get("x-total-page-count");
