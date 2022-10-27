@@ -1,10 +1,10 @@
 # KIBU Games
-### CodeOp REACT-FE-01 - Proyecto Final
 
 ## Descripción
-[**KIBU Games**](https://kibu-games.vercel.app/) es una web app dirigido a usuarios gamers. La web app mostrará ofertas de videojuegos desde la plataforma [Steam](https://store.steampowered.com/). Tuvimos aproximadamente 39 horas para entregar el proyecto.
 
-El usuario podrá filtrar por los juegos de Steam con diferentes parametros, como el título, precios máximo y mínimo, la puntuación del Steam (Steam rating).
+[**KIBU Games**](https://kibu-games.vercel.app/) es una web app responsiva dirigido a amantes de videojuegos y las ofertas. La web app mostrará ofertas de videojuegos desde la plataforma [Steam](https://store.steampowered.com/). Tuvimos aproximadamente 39 horas para trabajar en el proyecto.
+
+Inicializando la página, ya se puede visualizar varias ofertas de videojuegos. El usuario podrá filtrar por los juegos de Steam con diferentes parametros, como el título, precios máximo y mínimo, la puntuación del Steam (Steam rating).
 
 Para obtener los datos, la app llama a la [API de CheapShark](https://apidocs.cheapshark.com/). El usuario también podrá ordenar los resultados por precio, puntuación y otros parametros.
 
@@ -12,7 +12,32 @@ Adicionalmente, es posible visualizar los precios en monedas diferentes. Los dat
 
 Si el usuario le gusta alguna oferta, puede clicar en la imagen or titulo del juego y llegará a la página del juego en la tienda de Steam.
 
+## Related Documents
+
+- [x] [Prototipo en Figma](https://bit.ly/3sg32E1)
+- [x] [Our Kanban board](https://bit.ly/3z4yit8)
+- [x] [User journey Flowchart](https://bit.ly/3f5ripf)
+
+## Features
+
+- El usuario puede buscar ofertas de videojuegos por parametros especificos si desea:
+  - Title
+  - Minimum Price
+  - Maximum Price
+  - Minimum Steam Rating
+  - On-sale games only
+  - Currency
+- Clicando en el título o imagen se dirige a la tienda de Steam
+- Tambíen es posible ordenar los resultados con diferentes paramteros:
+  - Title
+  - Price
+  - Savings
+  - Release date
+  - Deal Rating
+  - Metacritic Score
+
 ## Tecnología Utilizada
+
 - HTML
 - CSS
 - Javascript
@@ -25,12 +50,8 @@ Si el usuario le gusta alguna oferta, puede clicar en la imagen or titulo del ju
 - [Font space](https://www.fontspace.com/debug-font-f53756)
 - [Font Awesome](https://fontawesome.com/search)
 
-## Related Documents
-- [x] [Prototipo en Figma](https://bit.ly/3sg32E1) 
-- [x] [Our Kanban board](https://bit.ly/3z4yit8)
-- [x] [User journey Flowchart](https://bit.ly/3f5ripf)
-
 ## Como instalar
+
 1. Clonear el repositorio a un espacio local
 2. Dentro de la carpeta, instala las dependencias con `npm install`
 3. Para visualizar los cambios ejecutar la comanda `npm run dev`
@@ -46,14 +67,6 @@ Si el usuario le gusta alguna oferta, puede clicar en la imagen or titulo del ju
     - Creamos los routes `Home.vue` y `Notfound.vue`
 6. Para poder ver los cambios en tiempo real con Vite, usamos la comanda `npm run dev`.
 
-## Entendiendo CheapShark API
-
-- La API de CheapShark recibe llamadas por el metodo `GET`.
-- No require la creación de una cuenta ni un API Key.
-- CheapShark permite la inclusión de 16 diferentes parametros opcionales.
-- Para decidir que parametros usar y los resultados que deseamos mostrar, tomamos como referencia la página principal del [CheapShark](https://www.cheapshark.com/)
-- Para este proyecto, hacemos la llamada para [`List of Deals`](https://apidocs.cheapshark.com/#c33f57dd-3bb3-3b1f-c454-08cab413a115).
-
 ## Creación del prototipo en Figma
 
 - Empezando con el proceso creativo, creamos [un prototipo de la aplicación](https://bit.ly/3sg32E1) en Figma.
@@ -61,19 +74,31 @@ Si el usuario le gusta alguna oferta, puede clicar en la imagen or titulo del ju
 añadido las modificaciones necesarias.
 - Mientras ibamos trabajando, el diseño de la página y Figma también iba actualizando
 
+## Screenshots
+![App Screenshot](/src/img/screenshots/desktop.jpg)
+![App Screenshot](/src/img/screenshots/tablet.jpg)
+![App Screenshot](/src/img/screenshots/mobile.jpg)
+
 ## Posibles mejoras futuras
+
 - Dejar el usuario buscar ofertas en otras tiendas de juegos, no solamente Steam.
 - Implementar una función de autocomplete mientras el usuario teclear el título que quiere buscar.
 - Monetizar la página aprovechando de los links de afiliados.
 - Implementar la posibilidad de hacerse cuentas de usuarios que permitirá
-    - Guardar y monitorizar los precios y ofertas de juegos
-        - Proveer notificaciones cuando un juego guardado está de rebajas.
-    - Conocer los gustos del usuario para poder recomendar juegos
+  - Guardar y monitorizar los precios y ofertas de juegos
+    - Proveer notificaciones cuando un juego guardado está de rebajas.
+  - Conocer los gustos del usuario para poder recomendar juegos
+- En la versión móvil, el buscador podría estar plegado cuando no está en `focus` y desplegable cuando lo este
 
 ## Aprendizajes
-- No deberíamos trabajar en la misma branch en git
-- Es importante tener aproximaciones del nivel de dificultad de cada tarea
 
+- No deberíamos trabajar en la misma branch en git
+- Es importante tener aproximaciones del nivel de dificultad de cada tarea para mejorar la organización
+- Trabajar los elementos más essenciales primero.
+- Con Vue es útil separar elementos en diferentes componentes para poder hacer cambios y customizaciónes mejor.
 
 ## Credits
+
 _This is a student project by Adeline Lim and Lucía Lázaro that was created at [CodeOp](http://codeop.tech), a frontend development bootcamp in Barcelona._
+
+Queremos da las gracias a los developers de la [API de CheapShark](https://apidocs.cheapshark.com/) y [Currency API](https://github.com/fawazahmed0/) sin sus trabajos, no tendremos data para mostrar. También agradecemos a nuestro instructor Carlos Pinilla, por haber prometido **Ki**nder **Bu**enos y ayudarnos con las dudas, que es lo que inspiró el nombre del proyecto, KIBU.
