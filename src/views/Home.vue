@@ -149,13 +149,14 @@
 
                     <!-- START: steam rating -->
                     <div class="flex justify-self-start hidden xl:inline">
-                        <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/#app_reviews_hash`" class="text-3xl group relative" 
-                            :class="`${(result.steamRatingPercent < 40) ? 'text-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'text-orange-700' : 'text-green-700'}`">
+                        <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/#app_reviews_hash`" class="text-3xl group relative">
                             
                             {{result.steamRatingPercent}}%
 
                             <span 
-                                class="absolute hidden group-hover:flex -left-5 -top-2 -translate-y-full w-auto px-2 py-1 bg-orange-700 rounded-xl text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-orange-700">
+                                class="absolute hidden group-hover:flex -left-5 -top-2 -translate-y-full w-auto px-2 py-1 rounded-xl text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent"
+                                :class="`${(result.steamRatingPercent < 40) ? 'bg-red-700 after:border-t-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'bg-orange-700 after:border-t-orange-700' : 'bg-green-700 after:border-t-green-700'}`"
+                                >
                                 {{result.steamRatingText}}: <br>{{result.steamRatingCount}} reviews
                             </span>
                         </a>
