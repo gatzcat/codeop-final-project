@@ -138,9 +138,22 @@
                     <!-- END: thumbnail juego -->
                     
                     <div class="">
-                        <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/`"><h6 class="font-semibold">{{result.title}}</h6></a>
+                        <a target="_blank" :href="`https://store.steampowered.com/app/${result.steamAppID}/${result.title}/`">
+                            <h6 class="font-semibold">
+                                {{result.title}}
+                                <i class="fa-brands fa-steam flex gap-1 text-sm xl:hidden"
+                            :class="`${(result.steamRatingPercent < 40) ? 'text-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'text-orange-700' : 'text-lime-600'}`">{{result.steamRatingPercent}} %</i>
+                            </h6> 
+                            
+                        </a>
                         
-                        <p v-if="result.metacriticLink && result.metacriticScore > 0"><a :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">Metacritic Score: </a> {{result.metacriticScore}}</p>
+                        <a v-if="result.metacriticLink && result.metacriticScore > 0" :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">
+                            <div class="flex items-center gap-1">
+                                <img src="../img/Metacritic-icon.png" class="w-4 h-4" />
+                                <span class="hidden xl:inline">Metacritic Score: </span>
+                                {{result.metacriticScore}}
+                            </div>
+                        </a>
                         
                         <Price :currencyData="currency" :usdSalesPrice="result.salePrice" :usdNormalPrice="result.normalPrice" :onSale="result.isOnSale" />
                         
