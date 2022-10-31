@@ -5,7 +5,7 @@
         <!-- Start: Columna Izquierda para buscador -->
         <div id="search column" class="rounded-[30px] pt-8 p-6 md:p-6 md:py-8 md:border-2 md:rounded-[50px] lg:w-1/3 lg:p-10 lg:ml-10 lg:border-4 h-2/3 border-purple lg:rounded-[80px] dark-purple md:sticky top-10">
 
-            <div class="flex justify-center mb-10 hidden sm:flex">
+            <div class="justify-center mb-10 hidden sm:flex">
                 <img src="../img/logosteamblanco.png" class="w-1/5 opacity-50"  alt="Logotipo de Steam">
             </div>
 
@@ -146,13 +146,16 @@
                         </a>
                         <!-- START: metacritic and small steam rating -->
                         <div class="flex xl:flex-col gap-3">
-                            <i class="fa-brands fa-steam flex gap-1 xl:hidden"><span :class="`${(result.steamRatingPercent < 40) ? 'text-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'text-orange-700' : 'text-green-600'}`">{{result.steamRatingPercent}} %</span></i>
+                            <span class="flex gap-1 xl:hidden items-center">
+                                <i class="fa-brands fa-steam flex xl:hidden"></i>
+                                <span :class="`${(result.steamRatingPercent < 40) ? 'text-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'text-orange-700' : 'text-green-600'}`">{{result.steamRatingPercent}} %</span>
+                            </span>
 
                             <a v-if="result.metacriticLink && result.metacriticScore > 0" :href="`https://www.metacritic.com/${result.metacriticLink}`" target="_blank">
                                 <div class="flex items-center gap-1">
-                                    <img src="../img/Metacritic-icon.png" class="w-3 h-3 xl:w-4 xl:h-4" />
+                                    <img src="../img/Metacritic-icon.png" class="w-4 h-4" />
                                     <span class="hidden xl:inline">Metacritic Score: </span>
-                                    <span class="fa-brands" :class="`${(result.steamRatingPercent < 40) ? 'text-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'text-orange-700' : 'text-green-600'}`">
+                                    <span class="" :class="`${(result.steamRatingPercent < 40) ? 'text-red-700' : (result.steamRatingPercent >= 40 && result.steamRatingPercent < 70) ? 'text-orange-700' : 'text-green-600'}`">
                                         {{result.metacriticScore}}
                                     </span>
                                 </div>
